@@ -180,7 +180,7 @@ header{
     </div>
   </div>
 </section>
-
+<style>
 #popupOverlay{
   position:fixed;
   inset:0;
@@ -192,7 +192,7 @@ header{
 }
 
 #popupBox{
-  position:relative; /* 🔥 CLAVE: evita que la X salte */
+  position:relative;
   background:rgba(0,0,0,.95);
   border:2px solid #ff0033;
   border-radius:16px;
@@ -204,14 +204,8 @@ header{
 }
 
 @keyframes popupIn{
-  from{
-    opacity:0;
-    transform:scale(.85) translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:scale(1) translateY(0);
-  }
+  from{opacity:0;transform:scale(.85) translateY(20px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
 }
 
 .closeX{
@@ -221,16 +215,6 @@ header{
   font-size:22px;
   color:#ff0033;
   cursor:pointer;
-  user-select:none;
-}
-
-.closeX:hover{
-  color:#ff66aa;
-}
-
-#popupBox h2{
-  color:#ff0033;
-  margin-bottom:20px;
 }
 
 #popupButtons{
@@ -238,22 +222,8 @@ header{
   flex-direction:column;
   gap:10px;
 }
-
-#popupButtons button{
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  background:#ff0033;
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-}
-
-#popupButtons button:hover{
-  background:#ff66aa;
-}
-
-<script>
+</style>
+  
 // PARTICLES (igual que antes)
 const canvas=document.getElementById("particles"),ctx=canvas.getContext("2d");
 function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
