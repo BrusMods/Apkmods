@@ -318,7 +318,9 @@ overlay.onclick = e=>{
   }
 };
 </script>
-
+<audio id="clickSound" preload="auto">
+  <source src="click.m4a" type="audio/mpeg">
+</audio>
 </body>
 </html>
 <script>
@@ -351,11 +353,27 @@ document.addEventListener("click", e => {
 </script>
 <script>
 const sound = document.getElementById("clickSound");
+let unlocked = false;
 
-document.addEventListener("click", e => {
-  if (e.target.tagName === "BUTTON" || e.target.closest("button")) {
+// 🔓 desbloquea audio en el PRIMER toque
+function unlockAudio() {
+  if (unlocked) return;
+  sound.play().then(() => {
+    sound.pause();
     sound.currentTime = 0;
-    sound.play();
-  }
+    unlocked = true;
+  }).catch(()=>{});
+}
+
+document.addEventListener("touchstart", unlockAudio, { once: true });
+document.addEventListener("click", unlockAudio, { once: true });
+
+// 🔊 sonido en botones
+document.addEventListener("click", e => {
+  const btn = e.target.closest("button");
+  if (!btn || !unlocked) return;
+
+  sound.currentTime = 0;
+  sound.play();
 });
 </script>
