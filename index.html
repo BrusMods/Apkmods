@@ -13,113 +13,30 @@
 body{margin:0;background:radial-gradient(circle at top, #7f1d1d, #000);color:#fff;overflow-x:hidden;}
 canvas{position:fixed;inset:0;z-index:0;}
 
-/* HEADER */
 header{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:15px 20px;position:relative;z-index:2;border-bottom:1px solid rgba(255,0,51,.25);display:flex;align-items:center;justify-content:center;}
 .brand{font-size:28px;font-weight:700;color:#ff0033;}
 
-/* MENÚ LATERAL */
-.side-menu{position:fixed;top:0;right:-260px;width:260px;height:100vh;background:rgba(0,0,0,.95);backdrop-filter:blur(10px);padding:25px;z-index:5;transition:.35s ease;border-left:1px solid rgba(255,0,51,.3);}
-.side-menu.active{right:0;}
-.side-menu h3{color:#ff0033;margin-bottom:20px;}
-.side-menu a{display:block;color:#fff;text-decoration:none;margin:15px 0;font-weight:500;}
-.side-menu a:hover{color:#ff0033;}
-.close-menu{position:absolute;top:15px;right:15px;background:none;border:none;color:#ff0033;font-size:26px;font-weight:700;cursor:pointer;}
-.close-menu:hover{transform:scale(1.1);}
-
-/* HERO */
-.hero{position:relative;z-index:2;text-align:center;padding:60px 20px 40px;}
-.hero h1{color:#ff0033;font-size:32px;margin-bottom:10px;}
-.hero p{color:#ddd;max-width:600px;margin:0 auto 40px;font-size:16px;}
-
-/* SECCIÓN DE MODS */
 .section{position:relative;z-index:2;max-width:1000px;margin:0 auto 40px;padding:0 20px;display:grid;grid-template-columns:1fr;gap:20px;}
+.card{background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:18px;padding:20px;border:1px solid rgba(255,0,51,.25);}
+.card-content {display: flex;align-items: flex-start;gap:20px;}
+.mod-img {width:120px;height:120px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,0,51,0.4);flex-shrink:0;}
+.mod-info {flex:1;}
+.mod-info h3{margin:0 0 5px;color:#ff0033;font-size:18px;}
+.mod-info p{margin:0 0 10px;color:#ddd;font-size:14px;}
+.btn-neon{padding:12px 22px;border-radius:14px;border:2px solid #ff0033;background:transparent;color:#ff0033;font-size:14px;font-weight:600;cursor:pointer;transition:.3s;display:inline-block;text-decoration:none;}
+.btn-neon:hover{color:#fff;box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;}
 
-.card{
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(8px);
-  border-radius:18px;
-  padding:20px;
-  border:1px solid rgba(255,0,51,.25);
-}
-
-.card-content {
-  display: flex;
-  align-items: flex-start; /* texto alineado arriba */
-  gap:20px;
-}
-
-.mod-img {
-  width:120px;
-  height:120px;
-  object-fit:contain;
-  border-radius:12px;
-  border:1px solid rgba(255,0,51,0.4);
-  flex-shrink:0;
-}
-
-.mod-info {
-  flex:1; /* texto ocupa el resto del espacio */
-}
-
-.mod-info h3{
-  margin:0 0 5px;
-  color:#ff0033;
-  font-size:18px;
-}
-.mod-info p{
-  margin:0 0 10px;
-  color:#ddd;
-  font-size:14px;
-}
-.btn-neon{
-  padding:12px 22px;
-  border-radius:14px;
-  border:2px solid #ff0033;
-  background:transparent;
-  color:#ff0033;
-  font-size:14px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
-  display:inline-block;
-  text-decoration:none;
-}
-.btn-neon:hover{
-  color:#fff;
-  box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;
-}
-
-/* FOOTER */
-footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;position:relative;z-index:2;}
-
-/* LOADER */
-#loader{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:999;flex-direction:column;}
-.loader-container{width:300px;text-align:center;}
-.loader-bar{width:0%;height:8px;background:linear-gradient(90deg,#ff0033,#ff66aa);border-radius:4px;box-shadow:0 0 10px #ff0033,0 0 20px #ff66aa;transition:width 0.1s linear;}
-.loader-text{color:#fff;margin-top:12px;font-size:16px;font-weight:700;letter-spacing:1px;text-shadow:0 0 5px #ff0033,0 0 10px #ff66aa;}
+/* POPUP */
+#popupOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:1000;}
+#popupBox{background:rgba(0,0,0,0.95);backdrop-filter:blur(8px);padding:30px;border:2px solid #ff0033;border-radius:15px;width:90%;max-width:400px;text-align:center;}
+#popupBox h2{color:#ff0033;margin-bottom:15px;}
+#popupBox button{margin:8px;padding:10px 20px;border-radius:10px;border:none;background:#ff0033;color:#fff;font-weight:600;cursor:pointer;}
+#popupBox .closePopup{background:#555;margin-left:10px;}
 </style>
 </head>
 <body>
 
-<canvas id="particles"></canvas>
-
-<header>
-  <span class="brand">APKMODS</span>
-</header>
-
-<div class="side-menu" id="sideMenu">
-  <button class="close-menu" id="closeMenu">✖</button>
-  <h3>Menú</h3>
-  <a href="index.html">Inicio</a>
-  <a href="mods.html">Mods</a>
-  <a href="apps.html">Apps</a>
-  <a href="https://t.me/apkmods">Canal</a>
-</div>
-
-<section class="hero">
-  <h1>📱 Descarga los Mejores Mods</h1>
-  <p>Accede a mods y apps medio Vip completamente Gratis</p>
-</section>
+<header><span class="brand">APKMODS</span></header>
 
 <section class="section">
   <!-- MOD 1 -->
@@ -128,8 +45,8 @@ footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;po
     <img src="mod1.png" alt="Mod 1" class="mod-img">
     <div class="mod-info">
       <h3>MOD MENU BLOODSTRIKE</h3>
-      <p>Aqui encontrarás varios mods de Bloodstrike. Recuerda que estos mods gratis no son los más seguros, pero diviértete.</p>
-      <a href="https://brusmods.github.io/P-gina-download-/" class="btn-neon" target="_blank">Descargar</a>
+      <p>Varios mods de Bloodstrike. Diviértete.</p>
+      <button class="btn-neon" data-mod="bloodstrike">Descargar</button>
     </div>
   </div>
 </div>
@@ -140,8 +57,8 @@ footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;po
     <img src="mod2.png" alt="Mod 2" class="mod-img">
     <div class="mod-info">
       <h3>MOD MENU MINECRAFT</h3>
-      <p>Aqui encontraras Varios mod menu de Minecraft bedrock,Diviertete</p>
-      <a href="https://tu-link-del-mod2.com" class="btn-neon" target="_blank">Descargar</a>
+      <p>Varios mods de Minecraft Bedrock.</p>
+      <button class="btn-neon" data-mod="minecraft">Descargar</button>
     </div>
   </div>
 </div>
@@ -152,63 +69,63 @@ footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;po
     <img src="mod3.png" alt="Mod 3" class="mod-img">
     <div class="mod-info">
       <h3>MOD 3</h3>
-      <p>Descripción del mod 3. Aquí puedes escribir cuanto texto quieras y la imagen seguirá a la izquierda, texto a la derecha.</p>
-      <a href="https://tu-link-del-mod3.com" class="btn-neon" target="_blank">Descargar</a>
+      <p>Descripción del mod 3.</p>
+      <button class="btn-neon" data-mod="mod3">Descargar</button>
     </div>
   </div>
 </div>
+</section>
 
-<footer>© 2025 APKMODS</footer>
-
-<div id="loader">
-  <div class="loader-container">
-    <div class="loader-bar"></div>
-    <div class="loader-text">Cargando...</div>
+<!-- POPUP -->
+<div id="popupOverlay">
+  <div id="popupBox">
+    <h2 id="popupTitle">MOD</h2>
+    <div id="popupButtons"></div>
+    <button class="closePopup">Cerrar</button>
   </div>
 </div>
 
 <script>
-/* MENÚ */
-const menuBtn = document.getElementById("menuBtn");
-const sideMenu = document.getElementById("sideMenu");
-const closeMenu = document.getElementById("closeMenu");
-if(menuBtn) menuBtn.addEventListener("click", ()=>{sideMenu.classList.add("active");});
-closeMenu.addEventListener("click", ()=>{sideMenu.classList.remove("active");});
+// POPUP CON MENÚS INDIVIDUALES
+const modLinks = {
+  bloodstrike: [
+    {name: "MOD 1", url: "https://brusmods.github.io/P-gina-download-/"},
+    {name: "MOD 2", url: "https://brusmods.github.io/P-gina-download2-/"},
+    {name: "MOD 3", url: "https://brusmods.github.io/P-gina-download3-/"}
+  ],
+  minecraft: [
+    {name: "MOD 1", url: "https://minecraftmods.com/mod1"},
+    {name: "MOD 2", url: "https://minecraftmods.com/mod2"},
+    {name: "MOD 3", url: "https://minecraftmods.com/mod3"}
+  ],
+  mod3: [
+    {name: "MOD 1", url: "https://mod3.com/mod1"},
+    {name: "MOD 2", url: "https://mod3.com/mod2"}
+  ]
+};
 
-/* PARTICLES */
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let sparks=[];
-function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-addEventListener("resize",resize);
-resize();
-for(let i=0;i<120;i++){sparks.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,life:Math.random()*100});}
-function animate(){ctx.fillStyle="rgba(0,0,0,.15)";ctx.fillRect(0,0,canvas.width,canvas.height);sparks.forEach(s=>{s.x+=s.vx;s.y+=s.vy;s.life--;if(s.life<=0){s.x=Math.random()*canvas.width;s.y=Math.random()*canvas.height;s.life=100;}ctx.fillStyle="#ff0033";ctx.fillRect(s.x,s.y,2,2);});requestAnimationFrame(animate);}
-animate();
+const popupOverlay = document.getElementById("popupOverlay");
+const popupTitle = document.getElementById("popupTitle");
+const popupButtons = document.getElementById("popupButtons");
 
-/* LOADER */
-const buttons = document.querySelectorAll('.btn-neon');
-const loader = document.getElementById('loader');
-const loaderBar = loader.querySelector('.loader-bar');
-buttons.forEach(btn => {
-  btn.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const url = btn.getAttribute('href');
-    loader.style.display = 'flex';
-    loaderBar.style.width = '0%';
-    let width = 0;
-    const interval = setInterval(()=>{
-      width += 1;
-      loaderBar.style.width = width + '%';
-      if(width >= 100){clearInterval(interval);window.location.href = url;}
-    }, 25);
+document.querySelectorAll(".btn-neon").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const mod = btn.dataset.mod;
+    popupTitle.textContent = btn.parentElement.querySelector("h3").textContent;
+    popupButtons.innerHTML = "";
+    modLinks[mod].forEach(link=>{
+      const b = document.createElement("button");
+      b.textContent = link.name;
+      b.onclick = ()=>window.open(link.url,"_blank");
+      popupButtons.appendChild(b);
+    });
+    popupOverlay.style.display = "flex";
   });
 });
 
-/* OCULTAR LOADER */
-function hideLoader(){loader.style.display='none';loaderBar.style.width='0%';}
-window.addEventListener('DOMContentLoaded', hideLoader);
-window.addEventListener('pageshow',(e)=>{if(e.persisted) hideLoader();});
+popupOverlay.querySelector(".closePopup").addEventListener("click", ()=>{
+  popupOverlay.style.display = "none";
+});
 </script>
 
 </body>
