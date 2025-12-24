@@ -14,77 +14,168 @@ body{margin:0;background:radial-gradient(circle at top, #7f1d1d, #000);color:#ff
 canvas{position:fixed;inset:0;z-index:0;}
 
 /* HEADER */
-header{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:15px 20px;position:relative;z-index:2;border-bottom:1px solid rgba(255,0,51,.25);display:flex;align-items:center;justify-content:center;}
+header{
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(6px);
+  padding:15px 20px;
+  position:relative;
+  z-index:2;
+  border-bottom:1px solid rgba(255,0,51,.25);
+  display:flex;
+  justify-content:center;
+}
 .brand{font-size:28px;font-weight:700;color:#ff0033;}
 
-/* SECCIÓN DE MODS */
-.section{position:relative;z-index:2;max-width:1000px;margin:0 auto 40px;padding:0 20px;display:grid;grid-template-columns:1fr;gap:20px;}
-.card{background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:18px;padding:20px;border:1px solid rgba(255,0,51,.25);}
-.card-content {display: flex;align-items: flex-start;gap:20px;}
-.mod-img {width:120px;height:120px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,0,51,0.4);flex-shrink:0;}
-.mod-info {flex:1;}
-.mod-info h3{margin:0 0 5px;color:#ff0033;font-size:18px;}
-.mod-info p{margin:0 0 10px;color:#ddd;font-size:14px;}
-.btn-neon{padding:12px 22px;border-radius:14px;border:2px solid #ff0033;background:transparent;color:#ff0033;font-size:14px;font-weight:600;cursor:pointer;transition:.3s;display:inline-block;text-decoration:none;}
-.btn-neon:hover{color:#fff;box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;}
+/* HERO */
+.hero{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:60px 20px 40px;
+}
+.hero h1{
+  color:#ff0033;
+  font-size:32px;
+  margin-bottom:10px;
+}
+.hero p{
+  color:#ddd;
+  max-width:600px;
+  margin:0 auto;
+  font-size:16px;
+}
+
+/* MODS */
+.section{
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  margin:0 auto 40px;
+  padding:0 20px;
+  display:grid;
+  gap:20px;
+}
+.card{
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);
+  border-radius:18px;
+  padding:20px;
+  border:1px solid rgba(255,0,51,.25);
+}
+.card-content{display:flex;gap:20px;}
+.mod-img{
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  border-radius:12px;
+  border:1px solid rgba(255,0,51,.4);
+}
+.mod-info h3{color:#ff0033;margin:0 0 5px;}
+.mod-info p{color:#ddd;margin:0 0 10px;}
+.btn-neon{
+  padding:12px 22px;
+  border-radius:14px;
+  border:2px solid #ff0033;
+  background:transparent;
+  color:#ff0033;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+.btn-neon:hover{
+  color:#fff;
+  box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;
+}
 
 /* POPUP */
 #popupOverlay{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.85);display:none;
-  align-items:center;justify-content:center;z-index:9999;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
 }
+
 #popupBox{
-  background:rgba(0,0,0,0.95);backdrop-filter:blur(8px);
-  padding:30px;border:2px solid #ff0033;border-radius:15px;
-  width:90%;max-width:400px;text-align:center;
+  background:rgba(0,0,0,.95);
+  border:2px solid #ff0033;
+  border-radius:16px;
+  width:90%;
+  max-width:420px;
+  padding:25px;
+  text-align:center;
+  animation:popupIn .35s ease;
 }
+
+@keyframes popupIn{
+  from{opacity:0;transform:scale(.85) translateY(20px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+
 #popupBox h2{color:#ff0033;margin-bottom:20px;}
-#popupButtons{display:flex;flex-direction:column;gap:10px; margin-bottom:10px;}
-#popupButtons button{padding:10px 20px;border-radius:10px;border:none;background:#ff0033;color:#fff;font-weight:600;cursor:pointer;}
+
+#popupButtons{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+#popupButtons button{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  background:#ff0033;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
 #popupButtons button:hover{background:#ff66aa;}
-.closePopup{background:#555;}
+
+.closeX{
+  position:absolute;
+  top:15px;
+  right:18px;
+  font-size:22px;
+  color:#ff0033;
+  cursor:pointer;
+}
 </style>
 </head>
+
 <body>
 
 <canvas id="particles"></canvas>
 
-<header><span class="brand">APKMODS</span></header>
+<header>
+  <span class="brand">APKMODS</span>
+</header>
+
+<section class="hero">
+  <h1>📱 Descarga los Mejores Mods</h1>
+  <p>Accede a mods y apps medio Vip completamente Gratis</p>
+</section>
 
 <section class="section">
-  <!-- MOD 1 -->
   <div class="card">
     <div class="card-content">
-      <img src="mod1.png" alt="Mod 1" class="mod-img">
+      <img src="mod1.png" class="mod-img">
       <div class="mod-info">
         <h3>MOD MENU BLOODSTRIKE</h3>
-        <p>Varios mods de Bloodstrike. Diviértete.</p>
+        <p>Varios mods de Bloodstrike.</p>
         <button class="btn-neon" data-mod="bloodstrike">Descargar</button>
       </div>
     </div>
   </div>
 
-  <!-- MOD 2 -->
   <div class="card">
     <div class="card-content">
-      <img src="mod2.png" alt="Mod 2" class="mod-img">
+      <img src="mod2.png" class="mod-img">
       <div class="mod-info">
         <h3>MOD MENU MINECRAFT</h3>
-        <p>Varios mods de Minecraft Bedrock.</p>
+        <p>Mods para Minecraft Bedrock.</p>
         <button class="btn-neon" data-mod="minecraft">Descargar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MOD 3 -->
-  <div class="card">
-    <div class="card-content">
-      <img src="mod3.png" alt="Mod 3" class="mod-img">
-      <div class="mod-info">
-        <h3>MOD 3</h3>
-        <p>Descripción del mod 3.</p>
-        <button class="btn-neon" data-mod="mod3">Descargar</button>
       </div>
     </div>
   </div>
@@ -93,63 +184,57 @@ header{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:15px 20px;po
 <!-- POPUP -->
 <div id="popupOverlay">
   <div id="popupBox">
-    <h2 id="popupTitle">MOD</h2>
+    <div class="closeX">✖</div>
+    <h2 id="popupTitle"></h2>
     <div id="popupButtons"></div>
-    <button class="closePopup">Cerrar</button>
   </div>
 </div>
 
 <script>
-// PARTICLES
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let sparks=[];
+// PARTICLES (igual que antes)
+const canvas=document.getElementById("particles"),ctx=canvas.getContext("2d");
 function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
 addEventListener("resize",resize);resize();
-for(let i=0;i<120;i++){sparks.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,life:Math.random()*100});}
-function animate(){ctx.fillStyle="rgba(0,0,0,.15)";ctx.fillRect(0,0,canvas.width,canvas.height);sparks.forEach(s=>{s.x+=s.vx;s.y+=s.vy;s.life--;if(s.life<=0){s.x=Math.random()*canvas.width;s.y=Math.random()*canvas.height;s.life=100;}ctx.fillStyle="#ff0033";ctx.fillRect(s.x,s.y,2,2);});requestAnimationFrame(animate);}
-animate();
+let p=[];for(let i=0;i<120;i++)p.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,l:100});
+(function anim(){ctx.fillStyle="rgba(0,0,0,.15)";ctx.fillRect(0,0,canvas.width,canvas.height);
+p.forEach(s=>{s.x+=s.vx;s.y+=s.vy;s.l--;if(s.l<=0){s.x=Math.random()*canvas.width;s.y=Math.random()*canvas.height;s.l=100;}
+ctx.fillStyle="#ff0033";ctx.fillRect(s.x,s.y,2,2)});requestAnimationFrame(anim)})();
 
-// POPUP MENÚS INDIVIDUALES
-const modLinks = {
-  bloodstrike: [
-    {name: "MOD 1", url: "https://brusmods.github.io/P-gina-download-/"},
-    {name: "MOD 2", url: "https://brusmods.github.io/P-gina-download2-/"},
-    {name: "MOD 3", url: "https://brusmods.github.io/P-gina-download3-/"}
+// MENÚS
+const modLinks={
+  bloodstrike:[
+    {name:"MOD 1",url:"https://brusmods.github.io/P-gina-download-/"},
+    {name:"MOD 2",url:"https://brusmods.github.io/P-gina-download2-/"}
   ],
-  minecraft: [
-    {name: "MOD 1", url: "https://minecraftmods.com/mod1"},
-    {name: "MOD 2", url: "https://minecraftmods.com/mod2"},
-    {name: "MOD 3", url: "https://minecraftmods.com/mod3"}
-  ],
-  mod3: [
-    {name: "MOD 1", url: "https://mod3.com/mod1"},
-    {name: "MOD 2", url: "https://mod3.com/mod2"}
+  minecraft:[
+    {name:"MOD 1",url:"https://minecraftmods.com/mod1"},
+    {name:"MOD 2",url:"https://minecraftmods.com/mod2"}
   ]
 };
 
-const popupOverlay = document.getElementById("popupOverlay");
-const popupTitle = document.getElementById("popupTitle");
-const popupButtons = document.getElementById("popupButtons");
+const overlay=document.getElementById("popupOverlay"),
+title=document.getElementById("popupTitle"),
+btns=document.getElementById("popupButtons");
 
-document.querySelectorAll(".btn-neon").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    const mod = btn.dataset.mod;
-    popupTitle.textContent = btn.parentElement.querySelector("h3").textContent;
-    popupButtons.innerHTML = "";
-    modLinks[mod].forEach(link=>{
-      const b = document.createElement("button");
-      b.textContent = link.name;
-      b.onclick = ()=>window.open(link.url,"_blank");
-      popupButtons.appendChild(b);
+document.querySelectorAll(".btn-neon").forEach(b=>{
+  b.onclick=()=>{
+    title.textContent=b.parentElement.querySelector("h3").textContent;
+    btns.innerHTML="";
+    modLinks[b.dataset.mod].forEach(l=>{
+      let x=document.createElement("button");
+      x.textContent=l.name;
+      x.onclick=()=>window.open(l.url,"_blank");
+      btns.appendChild(x);
     });
-    popupOverlay.style.display = "flex";
-  });
+    overlay.style.display="flex";
+  }
 });
 
-popupOverlay.querySelector(".closePopup").addEventListener("click", ()=>{
-  popupOverlay.style.display = "none";
-});
+overlay.onclick=e=>{
+  if(e.target===overlay || e.target.classList.contains("closeX")){
+    overlay.style.display="none";
+  }
+};
 </script>
 
 </body>
