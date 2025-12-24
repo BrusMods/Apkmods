@@ -13,9 +13,11 @@
 body{margin:0;background:radial-gradient(circle at top, #7f1d1d, #000);color:#fff;overflow-x:hidden;}
 canvas{position:fixed;inset:0;z-index:0;}
 
+/* HEADER */
 header{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:15px 20px;position:relative;z-index:2;border-bottom:1px solid rgba(255,0,51,.25);display:flex;align-items:center;justify-content:center;}
 .brand{font-size:28px;font-weight:700;color:#ff0033;}
 
+/* SECCIÓN DE MODS */
 .section{position:relative;z-index:2;max-width:1000px;margin:0 auto 40px;padding:0 20px;display:grid;grid-template-columns:1fr;gap:20px;}
 .card{background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:18px;padding:20px;border:1px solid rgba(255,0,51,.25);}
 .card-content {display: flex;align-items: flex-start;gap:20px;}
@@ -27,53 +29,65 @@ header{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:15px 20px;po
 .btn-neon:hover{color:#fff;box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;}
 
 /* POPUP */
-#popupOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:1000;}
-#popupBox{background:rgba(0,0,0,0.95);backdrop-filter:blur(8px);padding:30px;border:2px solid #ff0033;border-radius:15px;width:90%;max-width:400px;text-align:center;}
-#popupBox h2{color:#ff0033;margin-bottom:15px;}
-#popupBox button{margin:8px;padding:10px 20px;border-radius:10px;border:none;background:#ff0033;color:#fff;font-weight:600;cursor:pointer;}
-#popupBox .closePopup{background:#555;margin-left:10px;}
+#popupOverlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.85);display:none;
+  align-items:center;justify-content:center;z-index:9999;
+}
+#popupBox{
+  background:rgba(0,0,0,0.95);backdrop-filter:blur(8px);
+  padding:30px;border:2px solid #ff0033;border-radius:15px;
+  width:90%;max-width:400px;text-align:center;
+}
+#popupBox h2{color:#ff0033;margin-bottom:20px;}
+#popupButtons{display:flex;flex-direction:column;gap:10px; margin-bottom:10px;}
+#popupButtons button{padding:10px 20px;border-radius:10px;border:none;background:#ff0033;color:#fff;font-weight:600;cursor:pointer;}
+#popupButtons button:hover{background:#ff66aa;}
+.closePopup{background:#555;}
 </style>
 </head>
 <body>
+
+<canvas id="particles"></canvas>
 
 <header><span class="brand">APKMODS</span></header>
 
 <section class="section">
   <!-- MOD 1 -->
-<div class="card">
-  <div class="card-content">
-    <img src="mod1.png" alt="Mod 1" class="mod-img">
-    <div class="mod-info">
-      <h3>MOD MENU BLOODSTRIKE</h3>
-      <p>Varios mods de Bloodstrike. Diviértete.</p>
-      <button class="btn-neon" data-mod="bloodstrike">Descargar</button>
+  <div class="card">
+    <div class="card-content">
+      <img src="mod1.png" alt="Mod 1" class="mod-img">
+      <div class="mod-info">
+        <h3>MOD MENU BLOODSTRIKE</h3>
+        <p>Varios mods de Bloodstrike. Diviértete.</p>
+        <button class="btn-neon" data-mod="bloodstrike">Descargar</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- MOD 2 -->
-<div class="card">
-  <div class="card-content">
-    <img src="mod2.png" alt="Mod 2" class="mod-img">
-    <div class="mod-info">
-      <h3>MOD MENU MINECRAFT</h3>
-      <p>Varios mods de Minecraft Bedrock.</p>
-      <button class="btn-neon" data-mod="minecraft">Descargar</button>
+  <!-- MOD 2 -->
+  <div class="card">
+    <div class="card-content">
+      <img src="mod2.png" alt="Mod 2" class="mod-img">
+      <div class="mod-info">
+        <h3>MOD MENU MINECRAFT</h3>
+        <p>Varios mods de Minecraft Bedrock.</p>
+        <button class="btn-neon" data-mod="minecraft">Descargar</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- MOD 3 -->
-<div class="card">
-  <div class="card-content">
-    <img src="mod3.png" alt="Mod 3" class="mod-img">
-    <div class="mod-info">
-      <h3>MOD 3</h3>
-      <p>Descripción del mod 3.</p>
-      <button class="btn-neon" data-mod="mod3">Descargar</button>
+  <!-- MOD 3 -->
+  <div class="card">
+    <div class="card-content">
+      <img src="mod3.png" alt="Mod 3" class="mod-img">
+      <div class="mod-info">
+        <h3>MOD 3</h3>
+        <p>Descripción del mod 3.</p>
+        <button class="btn-neon" data-mod="mod3">Descargar</button>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
 <!-- POPUP -->
@@ -86,7 +100,17 @@ header{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:15px 20px;po
 </div>
 
 <script>
-// POPUP CON MENÚS INDIVIDUALES
+// PARTICLES
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let sparks=[];
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+addEventListener("resize",resize);resize();
+for(let i=0;i<120;i++){sparks.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,life:Math.random()*100});}
+function animate(){ctx.fillStyle="rgba(0,0,0,.15)";ctx.fillRect(0,0,canvas.width,canvas.height);sparks.forEach(s=>{s.x+=s.vx;s.y+=s.vy;s.life--;if(s.life<=0){s.x=Math.random()*canvas.width;s.y=Math.random()*canvas.height;s.life=100;}ctx.fillStyle="#ff0033";ctx.fillRect(s.x,s.y,2,2);});requestAnimationFrame(animate);}
+animate();
+
+// POPUP MENÚS INDIVIDUALES
 const modLinks = {
   bloodstrike: [
     {name: "MOD 1", url: "https://brusmods.github.io/P-gina-download-/"},
