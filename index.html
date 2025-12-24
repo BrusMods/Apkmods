@@ -34,13 +34,60 @@ header{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:15px 20px;po
 /* SECCIÓN DE MODS */
 .section{position:relative;z-index:2;max-width:1000px;margin:0 auto 40px;padding:0 20px;display:grid;grid-template-columns:1fr;gap:20px;}
 
-.card{background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:18px;padding:20px;border:1px solid rgba(255,0,51,.25);}
-.card-content{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-.mod-img{width:100px;height:100px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,0,51,0.4);}
-.mod-info h3{margin:0 0 5px;color:#ff0033;}
-.mod-info p{margin:0 0 10px;color:#ddd;font-size:14px;}
-.btn-neon{padding:12px 22px;border-radius:14px;border:2px solid #ff0033;background:transparent;color:#ff0033;font-size:14px;font-weight:600;cursor:pointer;transition:.3s;display:inline-block;text-decoration:none;}
-.btn-neon:hover{color:#fff;box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;}
+.card{
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);
+  border-radius:18px;
+  padding:20px;
+  border:1px solid rgba(255,0,51,.25);
+}
+
+.card-content {
+  display: flex;
+  align-items: flex-start; /* texto alineado arriba */
+  gap:20px;
+}
+
+.mod-img {
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  border-radius:12px;
+  border:1px solid rgba(255,0,51,0.4);
+  flex-shrink:0;
+}
+
+.mod-info {
+  flex:1; /* texto ocupa el resto del espacio */
+}
+
+.mod-info h3{
+  margin:0 0 5px;
+  color:#ff0033;
+  font-size:18px;
+}
+.mod-info p{
+  margin:0 0 10px;
+  color:#ddd;
+  font-size:14px;
+}
+.btn-neon{
+  padding:12px 22px;
+  border-radius:14px;
+  border:2px solid #ff0033;
+  background:transparent;
+  color:#ff0033;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+  display:inline-block;
+  text-decoration:none;
+}
+.btn-neon:hover{
+  color:#fff;
+  box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;
+}
 
 /* FOOTER */
 footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;position:relative;z-index:2;}
@@ -81,7 +128,7 @@ footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;po
     <img src="mod1.png" alt="Mod 1" class="mod-img">
     <div class="mod-info">
       <h3>MOD MENU BLOODSTRIKE</h3>
-      <p>Aqui encontraras varios mods de Bloodstrike, recuerda que estos mods gratis no son los mas seguro pero divierte.</p>
+      <p>Aqui encontrarás varios mods de Bloodstrike. Recuerda que estos mods gratis no son los más seguros, pero diviértete.</p>
       <a href="https://brusmods.github.io/P-gina-download-/" class="btn-neon" target="_blank">Descargar</a>
     </div>
   </div>
@@ -93,7 +140,7 @@ footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;po
     <img src="mod2.png" alt="Mod 2" class="mod-img">
     <div class="mod-info">
       <h3>MOD 2</h3>
-      <p>Descripción del mod 2.</p>
+      <p>Descripción del mod 2. Puedes agregar mucho texto y el cuadro crecerá verticalmente, pero el texto siempre estará al lado de la imagen.</p>
       <a href="https://tu-link-del-mod2.com" class="btn-neon" target="_blank">Descargar</a>
     </div>
   </div>
@@ -105,7 +152,7 @@ footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;po
     <img src="mod3.png" alt="Mod 3" class="mod-img">
     <div class="mod-info">
       <h3>MOD 3</h3>
-      <p>Descripción del mod 3.</p>
+      <p>Descripción del mod 3. Aquí puedes escribir cuanto texto quieras y la imagen seguirá a la izquierda, texto a la derecha.</p>
       <a href="https://tu-link-del-mod3.com" class="btn-neon" target="_blank">Descargar</a>
     </div>
   </div>
