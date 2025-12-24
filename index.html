@@ -347,4 +347,15 @@ document.addEventListener("click", e => {
     setTimeout(() => p.remove(), 600);
   }
 });
+  <audio id="clickSound" src="click.m4a" preload="auto"></audio>
+</script>
+<script>
+const sound = document.getElementById("clickSound");
+
+document.addEventListener("click", e => {
+  if (e.target.tagName === "BUTTON" || e.target.closest("button")) {
+    sound.currentTime = 0;
+    sound.play();
+  }
+});
 </script>
