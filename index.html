@@ -9,9 +9,23 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-*{box-sizing:border-box;font-family:'Poppins',system-ui;}
-body{margin:0;background:radial-gradient(circle at top, #7f1d1d, #000);color:#fff;overflow-x:hidden;}
-canvas{position:fixed;inset:0;z-index:0;}
+*{
+  box-sizing:border-box;
+  font-family:'Poppins',system-ui;
+}
+
+body{
+  margin:0;
+  background:radial-gradient(circle at top, #7f1d1d, #000);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
 
 /* HEADER */
 header{
@@ -24,7 +38,11 @@ header{
   display:flex;
   justify-content:center;
 }
-.brand{font-size:28px;font-weight:700;color:#ff0033;}
+.brand{
+  font-size:28px;
+  font-weight:700;
+  color:#ff0033;
+}
 
 /* HERO */
 .hero{
@@ -55,23 +73,36 @@ header{
   display:grid;
   gap:20px;
 }
+
 .card{
   background:rgba(0,0,0,.6);
   backdrop-filter:blur(8px);
   border-radius:18px;
   padding:20px;
   border:1px solid rgba(255,0,51,.25);
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
 }
-.card-content{display:flex;gap:20px;}
+
 .mod-img{
   width:120px;
   height:120px;
   object-fit:contain;
   border-radius:12px;
   border:1px solid rgba(255,0,51,.4);
+  flex-shrink:0;
 }
-.mod-info h3{color:#ff0033;margin:0 0 5px;}
-.mod-info p{color:#ddd;margin:0 0 10px;}
+
+.mod-info h3{
+  margin:0 0 5px;
+  color:#ff0033;
+}
+.mod-info p{
+  margin:0 0 10px;
+  color:#ddd;
+}
+
 .btn-neon{
   padding:12px 22px;
   border-radius:14px;
@@ -99,6 +130,7 @@ header{
 }
 
 #popupBox{
+  position:relative;
   background:rgba(0,0,0,.95);
   border:2px solid #ff0033;
   border-radius:16px;
@@ -110,11 +142,33 @@ header{
 }
 
 @keyframes popupIn{
-  from{opacity:0;transform:scale(.85) translateY(20px);}
-  to{opacity:1;transform:scale(1) translateY(0);}
+  from{
+    opacity:0;
+    transform:scale(.85) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
 }
 
-#popupBox h2{color:#ff0033;margin-bottom:20px;}
+.closeX{
+  position:absolute;
+  top:15px;
+  right:18px;
+  font-size:22px;
+  color:#ff0033;
+  cursor:pointer;
+  user-select:none;
+}
+.closeX:hover{
+  color:#ff66aa;
+}
+
+#popupBox h2{
+  color:#ff0033;
+  margin-bottom:20px;
+}
 
 #popupButtons{
   display:flex;
@@ -131,15 +185,8 @@ header{
   font-weight:600;
   cursor:pointer;
 }
-#popupButtons button:hover{background:#ff66aa;}
-
-.closeX{
-  position:absolute;
-  top:15px;
-  right:18px;
-  font-size:22px;
-  color:#ff0033;
-  cursor:pointer;
+#popupButtons button:hover{
+  background:#ff66aa;
 }
 </style>
 </head>
@@ -158,83 +205,81 @@ header{
 </section>
 
 <section class="section">
+
   <div class="card">
-    <div class="card-content">
-      <img src="mod1.png" class="mod-img">
-      <div class="mod-info">
-        <h3>MOD MENU BLOODSTRIKE</h3>
-        <p>Varios mods de Bloodstrike.</p>
-        <button class="btn-neon" data-mod="bloodstrike">Descargar</button>
-      </div>
+    <img src="mod1.png" class="mod-img">
+    <div class="mod-info">
+      <h3>MOD MENU BLOODSTRIKE</h3>
+      <p>Varios mods de Bloodstrike.</p>
+      <button class="btn-neon" data-mod="bloodstrike">Descargar</button>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-content">
-      <img src="mod2.png" class="mod-img">
-      <div class="mod-info">
-        <h3>MOD MENU MINECRAFT</h3>
-        <p>Mods para Minecraft Bedrock.</p>
-        <button class="btn-neon" data-mod="minecraft">Descargar</button>
-      </div>
+    <img src="mod2.png" class="mod-img">
+    <div class="mod-info">
+      <h3>MOD MENU MINECRAFT</h3>
+      <p>Mods para Minecraft Bedrock.</p>
+      <button class="btn-neon" data-mod="minecraft">Descargar</button>
     </div>
   </div>
+
 </section>
-<style>
-#popupOverlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+
+<!-- POPUP -->
+<div id="popupOverlay">
+  <div id="popupBox">
+    <div class="closeX">✖</div>
+    <h2 id="popupTitle"></h2>
+    <div id="popupButtons"></div>
+  </div>
+</div>
+
+<script>
+// PARTICLES
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+addEventListener("resize", resize);
+resize();
+
+let particles = [];
+for(let i=0;i<120;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    vx:(Math.random()-.5)*3,
+    vy:(Math.random()-.5)*3,
+    life:100
+  });
 }
 
-#popupBox{
-  position:relative;
-  background:rgba(0,0,0,.95);
-  border:2px solid #ff0033;
-  border-radius:16px;
-  width:90%;
-  max-width:420px;
-  padding:25px;
-  text-align:center;
-  animation:popupIn .35s ease;
-}
+(function animate(){
+  ctx.fillStyle="rgba(0,0,0,.15)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
 
-@keyframes popupIn{
-  from{opacity:0;transform:scale(.85) translateY(20px);}
-  to{opacity:1;transform:scale(1) translateY(0);}
-}
+  particles.forEach(p=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.life--;
+    if(p.life<=0){
+      p.x=Math.random()*canvas.width;
+      p.y=Math.random()*canvas.height;
+      p.life=100;
+    }
+    ctx.fillStyle="#ff0033";
+    ctx.fillRect(p.x,p.y,2,2);
+  });
 
-.closeX{
-  position:absolute;
-  top:15px;
-  right:18px;
-  font-size:22px;
-  color:#ff0033;
-  cursor:pointer;
-}
-
-#popupButtons{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-</style>
-  
-// PARTICLES (igual que antes)
-const canvas=document.getElementById("particles"),ctx=canvas.getContext("2d");
-function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-addEventListener("resize",resize);resize();
-let p=[];for(let i=0;i<120;i++)p.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,l:100});
-(function anim(){ctx.fillStyle="rgba(0,0,0,.15)";ctx.fillRect(0,0,canvas.width,canvas.height);
-p.forEach(s=>{s.x+=s.vx;s.y+=s.vy;s.l--;if(s.l<=0){s.x=Math.random()*canvas.width;s.y=Math.random()*canvas.height;s.l=100;}
-ctx.fillStyle="#ff0033";ctx.fillRect(s.x,s.y,2,2)});requestAnimationFrame(anim)})();
+  requestAnimationFrame(animate);
+})();
 
 // MENÚS
-const modLinks={
+const modLinks = {
   bloodstrike:[
     {name:"MOD 1",url:"https://brusmods.github.io/P-gina-download-/"},
     {name:"MOD 2",url:"https://brusmods.github.io/P-gina-download2-/"},
@@ -246,27 +291,30 @@ const modLinks={
   ]
 };
 
-const overlay=document.getElementById("popupOverlay"),
-title=document.getElementById("popupTitle"),
-btns=document.getElementById("popupButtons");
+const overlay = document.getElementById("popupOverlay");
+const title = document.getElementById("popupTitle");
+const btns = document.getElementById("popupButtons");
 
-document.querySelectorAll(".btn-neon").forEach(b=>{
-  b.onclick=()=>{
-    title.textContent=b.parentElement.querySelector("h3").textContent;
-    btns.innerHTML="";
-    modLinks[b.dataset.mod].forEach(l=>{
-      let x=document.createElement("button");
-      x.textContent=l.name;
-      x.onclick=()=>window.open(l.url,"_blank");
-      btns.appendChild(x);
+document.querySelectorAll(".btn-neon").forEach(btn=>{
+  btn.onclick = ()=>{
+    const mod = btn.dataset.mod;
+    title.textContent = btn.parentElement.querySelector("h3").textContent;
+    btns.innerHTML = "";
+
+    modLinks[mod].forEach(link=>{
+      const b = document.createElement("button");
+      b.textContent = link.name;
+      b.onclick = ()=>window.open(link.url,"_blank");
+      btns.appendChild(b);
     });
-    overlay.style.display="flex";
-  }
+
+    overlay.style.display = "flex";
+  };
 });
 
-overlay.onclick=e=>{
-  if(e.target===overlay || e.target.classList.contains("closeX")){
-    overlay.style.display="none";
+overlay.onclick = e=>{
+  if(e.target === overlay || e.target.classList.contains("closeX")){
+    overlay.style.display = "none";
   }
 };
 </script>
