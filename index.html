@@ -321,3 +321,23 @@ overlay.onclick = e=>{
 
 </body>
 </html>
+<script>
+document.addEventListener("mousemove", trail);
+document.addEventListener("touchmove", e => trail(e.touches[0]));
+
+function trail(e){
+  const p = document.createElement("span");
+  p.style.position = "fixed";
+  p.style.left = e.clientX + "px";
+  p.style.top = e.clientY + "px";
+  p.style.width = "8px";
+  p.style.height = "8px";
+  p.style.borderRadius = "50%";
+  p.style.background = "#22c55e";
+  p.style.pointerEvents = "none";
+  p.style.boxShadow = "0 0 15px #22c55e";
+  document.body.appendChild(p);
+
+  setTimeout(() => p.remove(), 300);
+}
+</script>
