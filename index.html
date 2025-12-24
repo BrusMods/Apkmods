@@ -31,11 +31,14 @@ header{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:15px 20px;po
 .hero h1{color:#ff0033;font-size:32px;margin-bottom:10px;}
 .hero p{color:#ddd;max-width:600px;margin:0 auto 40px;font-size:16px;}
 
-/* SECCIÓN */
-.section{position:relative;z-index:2;max-width:1000px;margin:0 auto 40px;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
-.card{background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:18px;padding:25px;border:1px solid rgba(255,0,51,.25);text-align:center;}
-.card h3{color:#ff0033;margin-bottom:10px;}
-.card p{color:#ddd;margin-bottom:15px;}
+/* SECCIÓN DE MODS */
+.section{position:relative;z-index:2;max-width:1000px;margin:0 auto 40px;padding:0 20px;display:grid;grid-template-columns:1fr;gap:20px;}
+
+.card{background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:18px;padding:20px;border:1px solid rgba(255,0,51,.25);}
+.card-content{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.mod-img{width:100px;height:100px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,0,51,0.4);}
+.mod-info h3{margin:0 0 5px;color:#ff0033;}
+.mod-info p{margin:0 0 10px;color:#ddd;font-size:14px;}
 .btn-neon{padding:12px 22px;border-radius:14px;border:2px solid #ff0033;background:transparent;color:#ff0033;font-size:14px;font-weight:600;cursor:pointer;transition:.3s;display:inline-block;text-decoration:none;}
 .btn-neon:hover{color:#fff;box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;}
 
@@ -68,7 +71,7 @@ footer{text-align:center;padding:25px;font-size:12px;color:#ffb3b3;opacity:.8;po
 
 <section class="hero">
   <h1>📱 Descarga los Mejores Mods</h1>
-  <p>Accede a mods completamente Gratis sin pagar.</p>
+  <p>Accede a mods y apps premium totalmente gratis y con estilo APKMODS.</p>
 </section>
 
 <section class="section">
