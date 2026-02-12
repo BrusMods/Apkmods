@@ -4,189 +4,206 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>APKMODS - Mods Gratis</title>
-<meta name="theme-color" content="#0f0f0f">
+<meta name="theme-color" content="#0135FF">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-*{
-  box-sizing:border-box;
-  font-family:'Poppins',system-ui;
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui;
 }
 
-body{
-  margin:0;
-  background:radial-gradient(circle at top, #7f1d1d, #000);
-  color:#fff;
-  overflow-x:hidden;
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0135FF, #000);
+  color: #fff;
+  overflow-x: hidden;
 }
 
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:0;
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 }
 
 /* HEADER */
-header{
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(6px);
-  padding:15px 20px;
-  position:relative;
-  z-index:2;
-  border-bottom:1px solid rgba(255,0,51,.25);
-  display:flex;
-  justify-content:center;
+header {
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  padding: 15px 20px;
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid rgba(1,53,255,.3);
+  display: flex;
+  justify-content: center;
 }
-.brand{
-  font-size:28px;
-  font-weight:700;
-  color:#ff0033;
+.brand {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0135FF;
 }
 
 /* HERO */
-.hero{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:60px 20px 40px;
+.hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 60px 20px 40px;
 }
-.hero h1{
-  color:#ff0033;
-  font-size:32px;
-  margin-bottom:10px;
+.hero h1 {
+  color: #0135FF;
+  font-size: 32px;
+  margin-bottom: 10px;
 }
-.hero p{
-  color:#ddd;
-  max-width:600px;
-  margin:0 auto;
-  font-size:16px;
+.hero p {
+  color: #ddd;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 16px;
 }
 
 /* MODS */
-.section{
-  position:relative;
-  z-index:2;
-  max-width:1000px;
-  margin:0 auto 40px;
-  padding:0 20px;
-  display:grid;
-  gap:20px;
+.section {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: grid;
+  gap: 20px;
 }
 
-.card{
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(8px);
-  border-radius:18px;
-  padding:20px;
-  border:1px solid rgba(255,0,51,.25);
-  display:flex;
-  gap:20px;
-  align-items:flex-start;
+.card {
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(1,53,255,.3);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
 }
 
-.mod-img{
-  width:120px;
-  height:120px;
-  object-fit:contain;
-  border-radius:12px;
-  border:1px solid rgba(255,0,51,.4);
-  flex-shrink:0;
+.mod-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(1,53,255,.4);
+  flex-shrink: 0;
 }
 
-.mod-info h3{
-  margin:0 0 5px;
-  color:#ff0033;
+.mod-info h3 {
+  margin: 0 0 5px;
+  color: #0135FF;
 }
-.mod-info p{
-  margin:0 0 10px;
-  color:#ddd;
+.mod-info p {
+  margin: 0 0 10px;
+  color: #ddd;
 }
 
-.btn-neon{
-  padding:12px 22px;
-  border-radius:14px;
-  border:2px solid #ff0033;
-  background:transparent;
-  color:#ff0033;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
+.btn-neon {
+  padding: 12px 22px;
+  border-radius: 14px;
+  border: 2px solid #0135FF;
+  background: transparent;
+  color: #0135FF;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+  position: relative;
+  overflow: hidden;
 }
-.btn-neon:hover{
-  color:#fff;
-  box-shadow:0 0 20px #ff0033,0 0 40px #ff66aa;
+.btn-neon:hover {
+  color: #fff;
+  box-shadow: 0 0 20px #0135FF, 0 0 40px #00aaff;
+}
+.btn-neon::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #0135FF, #0088ff, #00aaff, #0135FF);
+  background-size: 300%;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: -1;
+}
+.btn-neon:hover::before {
+  opacity: 1;
+  animation: glow 3s infinite linear;
+}
+@keyframes glow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* POPUP */
-#popupOverlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+#popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
-#popupBox{
-  position:relative;
-  background:rgba(0,0,0,.95);
-  border:2px solid #ff0033;
-  border-radius:16px;
-  width:90%;
-  max-width:420px;
-  padding:25px;
-  text-align:center;
-  animation:popupIn .35s ease;
+#popupBox {
+  position: relative;
+  background: rgba(0,0,0,.95);
+  border: 2px solid #0135FF;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  text-align: center;
+  animation: popupIn .35s ease;
 }
 
-@keyframes popupIn{
-  from{
-    opacity:0;
-    transform:scale(.85) translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:scale(1) translateY(0);
-  }
+@keyframes popupIn {
+  from { opacity: 0; transform: scale(.85) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.closeX{
-  position:absolute;
-  top:15px;
-  right:18px;
-  font-size:22px;
-  color:#ff0033;
-  cursor:pointer;
-  user-select:none;
+.closeX {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  font-size: 22px;
+  color: #0135FF;
+  cursor: pointer;
+  user-select: none;
 }
-.closeX:hover{
-  color:#ff66aa;
-}
-
-#popupBox h2{
-  color:#ff0033;
-  margin-bottom:20px;
+.closeX:hover {
+  color: #00aaff;
 }
 
-#popupButtons{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+#popupBox h2 {
+  color: #0135FF;
+  margin-bottom: 20px;
 }
 
-#popupButtons button{
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  background:#ff0033;
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
+#popupButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-#popupButtons button:hover{
-  background:#ff66aa;
+
+#popupButtons button {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #0135FF;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+}
+#popupButtons button:hover {
+  background: #0055cc;
 }
 </style>
 </head>
@@ -236,7 +253,7 @@ header{
 </div>
 
 <script>
-// PARTICLES
+// PARTICLES (cambiadas a azul)
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 
@@ -271,14 +288,16 @@ for(let i=0;i<120;i++){
       p.y=Math.random()*canvas.height;
       p.life=100;
     }
-    ctx.fillStyle="#ff0033";
+    ctx.fillStyle="rgba(1,53,255,0.8)";  // Azul #0135FF
     ctx.fillRect(p.x,p.y,2,2);
   });
 
   requestAnimationFrame(animate);
 })();
+</script>
 
-// MENÚS
+<script>
+// MOD LINKS (sin cambios)
 const modLinks = {
   bloodstrike:[
     {name:"AMSTER CHEATS BLOODSTRIKE",url:"https://brusmods.github.io/P-gina-download-/"},
@@ -320,12 +339,13 @@ overlay.onclick = e=>{
   }
 };
 </script>
+
 <audio id="clickSound" preload="auto">
   <source src="click.m4a" type="audio/mpeg">
 </audio>
-</body>
-</html>
+
 <script>
+// EFECTO DE CLIC (partículas verdes, lo dejo como estaba, si quieres azul dime)
 document.addEventListener("click", e => {
   for(let i=0;i<12;i++){
     const p = document.createElement("div");
@@ -344,20 +364,20 @@ document.addEventListener("click", e => {
 
     p.animate([
       { transform: "translate(0,0)", opacity: 1 },
-      { transform: `translate(${x}px,${y}px)`, opacity: 0 }
+      { transform: `translate(\( {x}px, \){y}px)`, opacity: 0 }
     ], { duration: 600 });
 
     document.body.appendChild(p);
     setTimeout(() => p.remove(), 600);
   }
 });
-  
 </script>
+
 <script>
+// SONIDO AL CLICK
 const sound = document.getElementById("clickSound");
 let unlocked = false;
 
-// 🔓 desbloquea audio en el PRIMER toque
 function unlockAudio() {
   if (unlocked) return;
   sound.play().then(() => {
@@ -370,7 +390,6 @@ function unlockAudio() {
 document.addEventListener("touchstart", unlockAudio, { once: true });
 document.addEventListener("click", unlockAudio, { once: true });
 
-// 🔊 sonido en botones
 document.addEventListener("click", e => {
   const btn = e.target.closest("button");
   if (!btn || !unlocked) return;
@@ -379,3 +398,6 @@ document.addEventListener("click", e => {
   sound.play();
 });
 </script>
+
+</body>
+</html>
