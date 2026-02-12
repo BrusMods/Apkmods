@@ -83,6 +83,12 @@ header {
   display: flex;
   gap: 20px;
   align-items: flex-start;
+  transition: all 0.4s ease;
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(1,53,255,0.35);
+  border-color: #00aaff;
 }
 
 .mod-img {
@@ -140,7 +146,7 @@ header {
   100% { background-position: 0% 50%; }
 }
 
-/* POPUP CON ANIMACIÓN CHIDA */
+/* POPUP CON ANIMACIÓN CHIDA (solo esto cambió) */
 #popupOverlay {
   position: fixed;
   inset: 0;
@@ -149,9 +155,9 @@ header {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(0px);
   opacity: 0;
-  transition: opacity 0.5s ease, backdrop-filter 0.5s ease;
+  transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
 }
 #popupOverlay.active {
   display: flex;
@@ -167,13 +173,12 @@ header {
   max-width: 420px;
   padding: 25px;
   text-align: center;
-  transform: scale(0.7) translateY(40px);
+  transform: scale(0.7);
   opacity: 0;
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 10px 40px rgba(1,53,255,0.4);
+  transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
 }
 #popupOverlay.active #popupBox {
-  transform: scale(1) translateY(0);
+  transform: scale(1);
   opacity: 1;
 }
 .closeX {
@@ -194,16 +199,6 @@ header {
 #popupBox h2 {
   color: #0135FF;
   margin-bottom: 20px;
-  font-size: 1.5rem;
-  opacity: 0;
-  animation: typeTitle 2s steps(30) forwards 0.6s;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #0135FF;
-}
-@keyframes typeTitle {
-  from { width: 0; opacity: 0; }
-  to   { width: 100%; opacity: 1; }
 }
 
 #popupButtons {
@@ -231,11 +226,10 @@ header {
   left: 50%;
   width: 0;
   height: 0;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.2);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.6s ease, height 0.6s ease;
-  pointer-events: none;
 }
 #popupButtons button:hover::after {
   width: 300px;
@@ -243,7 +237,7 @@ header {
 }
 #popupButtons button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(1,53,255,0.5);
+  box-shadow: 0 6px 15px rgba(1,53,255,0.5);
 }
 </style>
 </head>
@@ -328,7 +322,7 @@ for(let i=0;i<120;i++){
       p.y=Math.random()*canvas.height;
       p.life=100;
     }
-    ctx.fillStyle="rgba(1,53,255,0.8)";  // Azul #0135FF
+    ctx.fillStyle="rgba(1,53,255,0.8)";
     ctx.fillRect(p.x,p.y,2,2);
   });
 
@@ -385,7 +379,7 @@ overlay.onclick = e=>{
 </audio>
 
 <script>
-// EFECTO DE CLIC (azul para combinar)
+// EFECTO DE CLIC (azul)
 document.addEventListener("click", e => {
   for(let i=0;i<12;i++){
     const p = document.createElement("div");
