@@ -5,144 +5,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>APKMODS - Mods Gratis</title>
 <meta name="theme-color" content="#0135FF">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
 
-* { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin:0; padding:0; }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui;
+}
+
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #0135FF 0%, #001122 70%, #000 100%);
+  background: radial-gradient(circle at top, #0135FF, #000);
   color: #fff;
   overflow-x: hidden;
-  min-height: 100vh;
 }
-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
 
 /* HEADER */
 header {
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(12px);
-  padding: 16px 24px;
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  border-bottom: 1px solid rgba(1,53,255,0.25);
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  padding: 15px 20px;
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid rgba(1,53,255,.3);
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 .brand {
   font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, #00aaff, #ffffff, #00aaff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 100%;
-  animation: shine 5s linear infinite;
+  font-weight: 700;
+  color: #0135FF;
 }
-@keyframes shine { 0% { background-position: 0% } 100% { background-position: -200% } }
 
 /* HERO */
 .hero {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 120px 20px 60px;
+  padding: 60px 20px 40px;
 }
 .hero h1 {
-  font-size: clamp(2.5rem, 8vw, 4rem);
-  font-weight: 900;
-  color: #00aaff;
-  text-shadow: 0 0 20px rgba(0,170,255,0.6);
-  margin-bottom: 12px;
+  color: #0135FF;
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 .hero p {
-  color: #b0e0ff;
+  color: #ddd;
   max-width: 600px;
   margin: 0 auto;
-  font-size: 1.2rem;
-  opacity: 0.9;
+  font-size: 16px;
 }
 
-/* CARDS */
+/* MODS */
 .section {
   position: relative;
   z-index: 2;
-  max-width: 1100px;
-  margin: 0 auto 60px;
+  max-width: 1000px;
+  margin: 0 auto 40px;
   padding: 0 20px;
   display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
 }
+
 .card {
-  background: rgba(10,10,40,0.65);
-  backdrop-filter: blur(16px);
-  border-radius: 20px;
-  padding: 24px;
-  border: 1px solid rgba(1,53,255,0.3);
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(1,53,255,.3);
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
-.card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 20px 60px rgba(1,53,255,0.35);
-  border-color: #00aaff;
-}
+
 .mod-img {
   width: 120px;
   height: 120px;
   object-fit: contain;
-  border-radius: 14px;
-  border: 1px solid rgba(0,170,255,0.4);
+  border-radius: 12px;
+  border: 1px solid rgba(1,53,255,.4);
   flex-shrink: 0;
 }
+
 .mod-info h3 {
-  margin: 0 0 8px;
-  color: #00aaff;
-  font-size: 1.3rem;
+  margin: 0 0 5px;
+  color: #0135FF;
 }
 .mod-info p {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   color: #ddd;
-  font-size: 0.95rem;
 }
+
 .btn-neon {
-  padding: 12px 24px;
-  border-radius: 50px;
-  border: 2px solid #00aaff;
+  padding: 12px 22px;
+  border-radius: 14px;
+  border: 2px solid #0135FF;
   background: transparent;
-  color: #00aaff;
-  font-weight: 700;
+  color: #0135FF;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: .3s;
   position: relative;
   overflow: hidden;
+}
+.btn-neon:hover {
+  color: #fff;
+  box-shadow: 0 0 20px #0135FF, 0 0 40px #00aaff;
 }
 .btn-neon::before {
   content: "";
   position: absolute;
   inset: -2px;
-  background: linear-gradient(45deg, #0135FF, #00aaff, #40c4ff, #0135FF);
+  background: linear-gradient(45deg, #0135FF, #0088ff, #00aaff, #0135FF);
   background-size: 300%;
-  filter: blur(10px);
+  filter: blur(8px);
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity .3s;
   z-index: -1;
-  border-radius: 50px;
 }
 .btn-neon:hover::before {
   opacity: 1;
   animation: glow 3s infinite linear;
-}
-.btn-neon:hover {
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px #00aaff;
 }
 @keyframes glow {
   0% { background-position: 0% 50%; }
@@ -154,30 +144,33 @@ header {
 #popupOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,.75);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   backdrop-filter: blur(6px);
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, backdrop-filter 0.5s ease;
 }
-#popupOverlay.active { display: flex; opacity: 1; }
+#popupOverlay.active {
+  display: flex;
+  opacity: 1;
+  backdrop-filter: blur(12px);
+}
 #popupBox {
   position: relative;
-  background: rgba(10,10,40,0.92);
-  backdrop-filter: blur(12px);
-  border: 2px solid #00aaff;
-  border-radius: 20px;
+  background: rgba(0,0,0,.95);
+  border: 2px solid #0135FF;
+  border-radius: 16px;
   width: 90%;
-  max-width: 440px;
-  padding: 30px;
+  max-width: 420px;
+  padding: 25px;
   text-align: center;
-  transform: scale(0.7) translateY(50px);
+  transform: scale(0.7) translateY(40px);
   opacity: 0;
-  transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
-  box-shadow: 0 15px 50px rgba(0,170,255,0.4);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 40px rgba(1,53,255,0.4);
 }
 #popupOverlay.active #popupBox {
   transform: scale(1) translateY(0);
@@ -186,42 +179,48 @@ header {
 .closeX {
   position: absolute;
   top: 15px;
-  right: 20px;
-  font-size: 28px;
-  color: #00aaff;
+  right: 18px;
+  font-size: 22px;
+  color: #0135FF;
   cursor: pointer;
+  user-select: none;
   transition: all 0.3s;
 }
-.closeX:hover { color: #fff; transform: rotate(90deg) scale(1.2); }
+.closeX:hover {
+  color: #00aaff;
+  transform: rotate(90deg) scale(1.2);
+}
 
 #popupBox h2 {
-  color: #00aaff;
+  color: #0135FF;
   margin-bottom: 20px;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   opacity: 0;
-  animation: typeTitle 2s steps(30) forwards 0.5s;
+  animation: typeTitle 2s steps(30) forwards 0.6s;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid #00aaff;
+  border-right: 3px solid #0135FF;
 }
 @keyframes typeTitle {
-  from { width: 0; }
-  to { width: 100%; opacity: 1; }
+  from { width: 0; opacity: 0; }
+  to   { width: 100%; opacity: 1; }
 }
+
 #popupButtons {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
+
 #popupButtons button {
-  padding: 14px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, #0135FF, #0088ff);
+  background: #0135FF;
   color: #fff;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all .3s;
   position: relative;
   overflow: hidden;
 }
@@ -232,7 +231,7 @@ header {
   left: 50%;
   width: 0;
   height: 0;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.25);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.6s ease, height 0.6s ease;
@@ -263,8 +262,9 @@ header {
 </section>
 
 <section class="section">
+
   <div class="card">
-    <img src="mod1.png" class="mod-img" alt="Bloodstrike">
+    <img src="mod1.png" class="mod-img">
     <div class="mod-info">
       <h3>MOD MENU BLOODSTRIKE</h3>
       <p>Varios mods de Bloodstrike.</p>
@@ -273,13 +273,14 @@ header {
   </div>
 
   <div class="card">
-    <img src="mod2.png" class="mod-img" alt="Minecraft">
+    <img src="mod2.png" class="mod-img">
     <div class="mod-info">
       <h3>MOD MENU MINECRAFT</h3>
       <p>Mods para Minecraft Bedrock.</p>
       <button class="btn-neon" data-mod="minecraft">Descargar</button>
     </div>
   </div>
+
 </section>
 
 <!-- POPUP -->
@@ -292,69 +293,62 @@ header {
 </div>
 
 <script>
-// PARTICULAS HEXÁGONOS AZULES
+// PARTICLES (cambiadas a azul)
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+addEventListener("resize", resize);
+resize();
+
 let particles = [];
-const COUNT = 80;
-
-function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
-window.addEventListener("resize", resize); resize();
-
-class HexParticle {
-  constructor() { this.reset(); }
-  reset() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 16 + 6;
-    this.speed = Math.random() * 0.5 + 0.1;
-    this.angle = Math.random() * Math.PI * 2;
-    this.opacity = Math.random() * 0.4 + 0.1;
-  }
-  update() {
-    this.y += this.speed;
-    this.angle += 0.015;
-    if (this.y > canvas.height + this.size) this.reset();
-  }
-  draw() {
-    ctx.save();
-    ctx.translate(this.x, this.y);
-    ctx.rotate(this.angle);
-    ctx.globalAlpha = this.opacity;
-    ctx.strokeStyle = "#00aaff";
-    ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    for (let i = 0; i < 6; i++) {
-      ctx.lineTo(this.size * Math.cos(i * Math.PI / 3), this.size * Math.sin(i * Math.PI / 3));
-    }
-    ctx.closePath();
-    ctx.stroke();
-    ctx.restore();
-  }
+for(let i=0;i<120;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    vx:(Math.random()-.5)*3,
+    vy:(Math.random()-.5)*3,
+    life:100
+  });
 }
 
-for (let i = 0; i < COUNT; i++) particles.push(new HexParticle());
-
-function animateParticles() {
-  ctx.fillStyle = "rgba(0,0,0,0.08)";
+(function animate(){
+  ctx.fillStyle="rgba(0,0,0,.15)";
   ctx.fillRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p => { p.update(); p.draw(); });
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
 
+  particles.forEach(p=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.life--;
+    if(p.life<=0){
+      p.x=Math.random()*canvas.width;
+      p.y=Math.random()*canvas.height;
+      p.life=100;
+    }
+    ctx.fillStyle="rgba(1,53,255,0.8)";  // Azul #0135FF
+    ctx.fillRect(p.x,p.y,2,2);
+  });
+
+  requestAnimationFrame(animate);
+})();
+</script>
+
+<script>
 // MOD LINKS
 const modLinks = {
-  bloodstrike: [
-    {name:"AMSTER CHEATS BLOODSTRIKE", url:"https://brusmods.github.io/P-gina-download-/"},
-    {name:"MOD PAHLAWAN CHEATS 2.0-VENCIDO", url:"https://link-hub.net/2551325/Umx4QymS2YrA"},
-    {name:"MOD PAHLAWAN CHEATS 3.0", url:"https://www.mediafire.com/file/2spuq0irm6cwrgg/NEW+UPDATE+PAHLAWAN+CHEATS+3.0.zip/file"},
-    {name:"MOD 4 EN MANTENIMIENTO", url:"https://brusmods.github.io/En-mantenimiento-/"},
-    {name:"MOD 5 EN MANTENIMIENTO", url:"https://brusmods.github.io/En-mantenimiento-/"}
+  bloodstrike:[
+    {name:"AMSTER CHEATS BLOODSTRIKE",url:"https://brusmods.github.io/P-gina-download-/"},
+    {name:"MOD PAHLAWAN CHEATS 2.0-VENCIDO",url:"https://link-hub.net/2551325/Umx4QymS2YrA"},
+    {name:"MOD PAHLAWAN CHEATS 3.0",url:"https://www.mediafire.com/file/2spuq0irm6cwrgg/NEW+UPDATE+PAHLAWAN+CHEATS+3.0.zip/file"},
+    {name:"MOD 4 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"},
+    {name:"MOD 5 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"}
   ],
-  minecraft: [
-    {name:"MOD 1 EN MANTENIMIENTO", url:"https://brusmods.github.io/En-mantenimiento-/"},
-    {name:"MOD 2 EN MANTENIMIENTO", url:"https://brusmods.github.io/En-mantenimiento-/"}
+  minecraft:[
+    {name:"MOD 1 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"},
+    {name:"MOD 2 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"}
   ]
 };
 
@@ -362,16 +356,16 @@ const overlay = document.getElementById("popupOverlay");
 const title = document.getElementById("popupTitle");
 const btns = document.getElementById("popupButtons");
 
-document.querySelectorAll(".btn-neon").forEach(btn => {
-  btn.onclick = () => {
+document.querySelectorAll(".btn-neon").forEach(btn=>{
+  btn.onclick = ()=>{
     const mod = btn.dataset.mod;
     title.textContent = btn.parentElement.querySelector("h3").textContent;
     btns.innerHTML = "";
 
-    modLinks[mod].forEach(link => {
+    modLinks[mod].forEach(link=>{
       const b = document.createElement("button");
       b.textContent = link.name;
-      b.onclick = () => window.open(link.url, "_blank");
+      b.onclick = ()=>window.open(link.url,"_blank");
       btns.appendChild(b);
     });
 
@@ -379,15 +373,21 @@ document.querySelectorAll(".btn-neon").forEach(btn => {
   };
 });
 
-overlay.onclick = e => {
-  if (e.target === overlay || e.target.classList.contains("closeX")) {
+overlay.onclick = e=>{
+  if(e.target === overlay || e.target.classList.contains("closeX")){
     overlay.classList.remove("active");
   }
 };
+</script>
 
-// EFECTO CLICK AZUL
+<audio id="clickSound" preload="auto">
+  <source src="click.m4a" type="audio/mpeg">
+</audio>
+
+<script>
+// EFECTO DE CLIC (azul para combinar)
 document.addEventListener("click", e => {
-  for (let i = 0; i < 12; i++) {
+  for(let i=0;i<12;i++){
     const p = document.createElement("div");
     p.style.position = "fixed";
     p.style.left = e.clientX + "px";
@@ -397,7 +397,7 @@ document.addEventListener("click", e => {
     p.style.borderRadius = "50%";
     p.style.background = "#00aaff";
     p.style.pointerEvents = "none";
-    p.style.boxShadow = "0 0 12px #00aaff";
+    p.style.boxShadow = "0 0 10px #00aaff";
 
     const x = (Math.random() - 0.5) * 120;
     const y = (Math.random() - 0.5) * 120;
@@ -405,13 +405,15 @@ document.addEventListener("click", e => {
     p.animate([
       { transform: "translate(-50%,-50%)", opacity: 1 },
       { transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`, opacity: 0 }
-    ], { duration: 600, easing: "ease-out" });
+    ], { duration: 600 });
 
     document.body.appendChild(p);
     setTimeout(() => p.remove(), 600);
   }
 });
+</script>
 
+<script>
 // SONIDO AL CLICK
 const sound = document.getElementById("clickSound");
 let unlocked = false;
@@ -431,14 +433,11 @@ document.addEventListener("click", unlockAudio, { once: true });
 document.addEventListener("click", e => {
   const btn = e.target.closest("button");
   if (!btn || !unlocked) return;
+
   sound.currentTime = 0;
   sound.play();
 });
 </script>
-
-<audio id="clickSound" preload="auto">
-  <source src="click.m4a" type="audio/mpeg">
-</audio>
 
 </body>
 </html>
