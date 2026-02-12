@@ -18,7 +18,7 @@ body {
 }
 canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-/* HEADER FIJO */
+/* HEADER */
 header {
   background: rgba(0,0,0,0.7);
   backdrop-filter: blur(12px);
@@ -150,7 +150,7 @@ header {
   100% { background-position: 0% 50%; }
 }
 
-/* POPUP MEJORADO */
+/* POPUP CON ANIMACIÓN CHIDA */
 #popupOverlay {
   position: fixed;
   inset: 0;
@@ -161,7 +161,7 @@ header {
   z-index: 9999;
   backdrop-filter: blur(6px);
   opacity: 0;
-  transition: opacity 0.4s;
+  transition: opacity 0.5s ease;
 }
 #popupOverlay.active { display: flex; opacity: 1; }
 #popupBox {
@@ -174,13 +174,13 @@ header {
   max-width: 440px;
   padding: 30px;
   text-align: center;
-  transform: scale(0.8);
+  transform: scale(0.7) translateY(50px);
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-  box-shadow: 0 10px 40px rgba(0,170,255,0.3);
+  transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 15px 50px rgba(0,170,255,0.4);
 }
 #popupOverlay.active #popupBox {
-  transform: scale(1);
+  transform: scale(1) translateY(0);
   opacity: 1;
 }
 .closeX {
@@ -192,12 +192,21 @@ header {
   cursor: pointer;
   transition: all 0.3s;
 }
-.closeX:hover { color: #fff; transform: rotate(90deg); }
+.closeX:hover { color: #fff; transform: rotate(90deg) scale(1.2); }
 
 #popupBox h2 {
   color: #00aaff;
   margin-bottom: 20px;
   font-size: 1.6rem;
+  opacity: 0;
+  animation: typeTitle 2s steps(30) forwards 0.5s;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #00aaff;
+}
+@keyframes typeTitle {
+  from { width: 0; }
+  to { width: 100%; opacity: 1; }
 }
 #popupButtons {
   display: flex;
@@ -213,6 +222,25 @@ header {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+#popupButtons button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+}
+#popupButtons button:hover::after {
+  width: 300px;
+  height: 300px;
 }
 #popupButtons button:hover {
   transform: translateY(-3px);
