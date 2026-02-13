@@ -32,15 +32,15 @@ canvas {
   pointer-events: none;
 }
 
-/* HEADER */
+/* HEADER con animación más loca */
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-  padding: 15px 5%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.25);
+  padding: 18px 5%;
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -49,24 +49,24 @@ header {
 
 .brand {
   font-family: 'Orbitron', sans-serif;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 900;
   color: #00ffff;
-  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
-  letter-spacing: 4px;
-  animation: glitch 4s infinite;
+  text-shadow: 0 0 25px #00ffff, 0 0 50px #0088ff;
+  letter-spacing: 5px;
+  animation: glitchPulse 6s infinite;
 }
 
-@keyframes glitch {
-  0% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
-  2% { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
-  4% { text-shadow: 0; }
-  100% { text-shadow: 0; }
+@keyframes glitchPulse {
+  0%, 100% { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff; transform: scale(1); }
+  2%  { text-shadow: 3px 0 #ff00ff, -3px 0 #00ffff; transform: skew(5deg); }
+  4%  { text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff; transform: skew(-5deg); }
+  6%  { text-shadow: 0; transform: scale(1.03); }
 }
 
-/* HERO */
+/* HERO con más movimiento */
 .hero {
-  padding: 180px 5% 100px;
+  padding: 200px 5% 120px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -74,43 +74,502 @@ header {
 
 .hero h1 {
   font-family: 'Orbitron', sans-serif;
-  font-size: 3.5rem;
+  font-size: 4rem;
   color: #00ffff;
-  text-shadow: 0 0 30px #00ffff, 0 0 60px #0088ff;
-  margin-bottom: 20px;
-  animation: neonGlow 2s ease-in-out infinite alternate;
+  text-shadow: 0 0 40px #00ffff, 0 0 80px #0088ff;
+  margin-bottom: 25px;
+  animation: neonFlicker 3s infinite alternate, floatTitle 7s infinite ease-in-out;
 }
 
 .hero p {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #aaffff;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  text-shadow: 0 0 10px #00ffff;
+  text-shadow: 0 0 15px #00ffff;
+  animation: fadeInGlow 2s ease-out;
 }
 
-@keyframes neonGlow {
-  from { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
-  to   { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
+@keyframes neonFlicker {
+  0%, 100% { opacity: 1; text-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff; }
+  50%      { opacity: 0.92; text-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff; }
 }
 
-/* CARDS */
+@keyframes floatTitle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-15px); }
+}
+
+@keyframes fadeInGlow {
+  from { opacity: 0; transform: translateY(30px); text-shadow: none; }
+  to   { opacity: 1; transform: translateY(0); text-shadow: 0 0 15px #00ffff; }
+}
+
+/* CARDS con animaciones everywhere */
 .section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 5%;
+  padding: 0 5% 100px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  margin-bottom: 80px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 40px;
 }
 
 .card {
-  background: rgba(0, 20, 40, 0.6);
-  border: 1px solid #00ffff33;
-  border-radius: 16px;
-  padding: 25px;
-  backdrop-filter: blur(8px);
+  background: rgba(0, 20, 40, 0.65);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(80px) scale(0.95);
+  animation: cardEnter 1.2s forwards cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.card:nth-child(1) { animation-delay: 0.4s; }
+.card:nth-child(2) { animation-delay: 0.7s; }
+
+@keyframes cardEnter {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.card:hover {
+  transform: translateY(-20px) scale(1.05);
+  border-color: #00ffff;
+  box-shadow: 0 0 60px rgba(0, 255, 255, 0.5);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle at 30% 20%, rgba(0,255,255,0.15), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.6s, transform 0.8s;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+  transform: scale(1.5) translate(20%, 30%);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(transparent, rgba(0,255,255,0.08), transparent);
+  transform: translateY(-100%);
+  transition: transform 1.2s;
+}
+
+.card:hover::after {
+  transform: translateY(100%);
+}
+
+/* IMAGENES CON BORDES REDONDEADOS + GLOW */
+.mod-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 25px;
+  border-radius: 16px;           /* Esquinas redondeadas como la original */
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  background: rgba(0,0,0,0.4);
+  transition: all 0.6s ease;
+  transform: scale(1.02);
+}
+
+.card:hover .mod-img {
+  transform: scale(1.12) rotate(2deg);
+  box-shadow: 0 0 50px rgba(0, 255, 255, 0.7);
+  border-color: #00ffff;
+}
+
+/* BOTONES con pulse y ripple */
+.btn-neon {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.btn-neon:hover {
+  background: rgba(0, 255, 255, 0.15);
+  box-shadow: 0 0 40px #00ffff;
+  transform: scale(1.05);
+}
+
+.btn-neon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.8s ease, height 0.8s ease;
+  pointer-events: none;
+}
+
+.btn-neon:active::after {
+  width: 400px;
+  height: 400px;
+  transition: 0s;
+}
+
+/* POPUP ANIMADO */
+#popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(15px);
+}
+
+#popupOverlay.active { display: flex; }
+
+#popupBox {
+  background: rgba(0, 10, 30, 0.92);
+  border: 3px solid #00ffff;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 520px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 0 80px rgba(0,255,255,0.6);
+  transform: scale(0.7) rotateX(30deg);
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+#popupOverlay.active #popupBox {
+  transform: scale(1) rotateX(0);
+  opacity: 1;
+}
+
+.closeX {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 32px;
+  color: #00ffff;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.closeX:hover { transform: rotate(180deg) scale(1.3); color: #ff00ff; }
+
+#popupBox h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #00ffff;
+  text-shadow: 0 0 30px #00ffff;
+  margin-bottom: 30px;
+  animation: pulseText 2s infinite;
+}
+
+@keyframes pulseText {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+
+#popupButtons button {
+  width: 100%;
+  padding: 16px;
+  margin: 12px 0;
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: btnPop 0.6s forwards;
+}
+
+#popupButtons button:nth-child(1) { animation-delay: 0.2s; }
+#popupButtons button:nth-child(2) { animation-delay: 0.35s; }
+#popupButtons button:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes btnPop {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#popupButtons button:hover {
+  background: #00ffff22;
+  box-shadow: 0 0 35px #00ffff;
+  transform: translateY(-5px);
+}
+
+/* LOADER con más vida */
+#loaderOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+#loaderOverlay.active { display: flex; }
+
+.cube-container { perspective: 1400px; }
+.cube {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spinCube 4s infinite linear;
+}
+
+.cube-face {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(135deg, #00ffff, #00aaff);
+  border: 3px solid rgba(255,255,255,0.4);
+  box-shadow: 0 0 40px #00ffff;
+  opacity: 0.9;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px #fff;
+}
+
+.cube-face-front  { transform: translateZ(70px); }
+.cube-face-back   { transform: rotateY(180deg) translateZ(70px); }
+.cube-face-right  { transform: rotateY(90deg) translateZ(70px); }
+.cube-face-left   { transform: rotateY(-90deg) translateZ(70px); }
+.cube-face-top    { transform: rotateX(90deg) translateZ(70px); }
+.cube-face-bottom { transform: rotateX(-90deg) translateZ(70px); }
+
+@keyframes spinCube {
+  0%   { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(720deg); }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+  <span class="brand">APKMODS</span>
+</header>
+
+<section class="hero">
+  <h1>BIENVENIDO A APKMODS</h1>
+  <p>Mods totalmente GRATIS</p>
+</section>
+
+<section class="section">
+  <div class="card">
+    <img src="mod1.png" class="mod-img" alt="Bloodstrike Mod">
+    <div class="mod-info">
+      <h3>MOD MENU BLOODSTRIKE</h3>
+      <p>Varios cheats y mods avanzados para Bloodstrike</p>
+      <button class="btn-neon" data-mod="bloodstrike">DESCARGAR</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="mod2.png" class="mod-img" alt="Minecraft Mod">
+    <div class="mod-info">
+      <h3>MOD MENU MINECRAFT</h3>
+      <p>Mods para Minecraft Bedrock Edition</p>
+      <button class="btn-neon" data-mod="minecraft">DESCARGAR</button>
+    </div>
+  </div>
+</section>
+
+<!-- POPUP -->
+<div id="popupOverlay">
+  <div id="popupBox">
+    <div class="closeX">✖</div>
+    <h2 id="popupTitle"></h2>
+    <div id="popupButtons"></div>
+  </div>
+</div>
+
+<!-- LOADER -->
+<div id="loaderOverlay">
+  <div class="cube-container">
+    <div class="cube">
+      <div class="cube-face cube-face-front">MOD</div>
+      <div class="cube-face cube-face-back">VIP</div>
+      <div class="cube-face cube-face-right">FREE</div>
+      <div class="cube-face cube-face-left">2026</div>
+      <div class="cube-face cube-face-top">BRUS</div>
+      <div class="cube-face cube-face-bottom">STYLE</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// PARTÍCULAS CUBOS + MÁS ANIMACIÓN Y BRILLO
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+let cubes = [];
+for (let i = 0; i < 80; i++) {  // Más cubitos
+  cubes.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    z: Math.random() * 1200 - 600,
+    size: Math.random() * 10 + 5,
+    vx: (Math.random() - 0.5) * 1.8,
+    vy: (Math.random() - 0.5) * 1.8,
+    vz: (Math.random() - 0.5) * 3,
+    rotX: Math.random() * Math.PI * 2,
+    rotY: Math.random() * Math.PI * 2,
+    rotSpeedX: (Math.random() - 0.5) * 0.035,
+    rotSpeedY: (Math.random() - 0.5) * 0.035,
+    pulse: Math.random() * 0.5 + 0.5
+  });
+}
+
+function drawCube(x, y, size, alpha, pulse) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.globalAlpha = alpha * (0.6 + Math.sin(Date.now() * 0.003 + pulse * 10) * 0.4);
+
+  // Cara principal con glow variable
+  ctx.fillStyle = `rgba(0, 255, 255, ${alpha * 0.7})`;
+  ctx.fillRect(-size/2, -size/2, size, size);
+  
+  ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+  ctx.lineWidth = 2 + Math.sin(Date.now() * 0.004) * 1;
+  ctx.strokeRect(-size/2, -size/2, size, size);
+
+  // Pequeño glow extra
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = '#00ffff';
+  ctx.fillStyle = `rgba(0, 255, 255, ${alpha * 0.15})`;
+  ctx.fillRect(-size/2 - 10, -size/2 - 10, size + 20, size + 20);
+
+  ctx.restore();
+}
+
+(function animate() {
+  ctx.fillStyle = 'rgba(0,0,0,0.07)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  cubes.forEach(c => {
+    c.x += c.vx;
+    c.y += c.vy;
+    c.z += c.vz;
+    c.rotX += c.rotSpeedX;
+    c.rotY += c.rotSpeedY;
+
+    if (Math.abs(c.x - canvas.width/2) > canvas.width * 0.7) c.vx *= -0.8;
+    if (Math.abs(c.y - canvas.height/2) > canvas.height * 0.7) c.vy *= -0.8;
+
+    const perspective = 900 / (900 + c.z);
+    const px = (c.x - canvas.width/2) * perspective + canvas.width/2;
+    const py = (c.y - canvas.height/2) * perspective + canvas.height/2;
+    const psize = c.size * perspective * 1.8;
+
+    const alpha = Math.max(0.08, (c.z + 600) / 1200);
+
+    drawCube(px, py, psize, alpha, c.pulse);
+  });
+
+  requestAnimationFrame(animate);
+})();
+</script>
+
+<script>
+// Lógica popup y loader (sin cambios en funcionalidad)
+const modLinks = {
+  bloodstrike: [
+    {name:"AMSTER CHEATS BLOODSTRIKE",url:"https://brusmods.github.io/P-gina-download-/"},
+    {name:"MOD PAHLAWAN CHEATS 2.0-VENCIDO",url:"https://link-hub.net/2551325/Umx4QymS2YrA"},
+    {name:"MOD PAHLAWAN CHEATS 3.0",url:"https://www.mediafire.com/file/2spuq0irm6cwrgg/NEW+UPDATE+PAHLAWAN+CHEATS+3.0.zip/file"},
+    {name:"MOD 4 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"},
+    {name:"MOD 5 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"}
+  ],
+  minecraft: [
+    {name:"MOD 1 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"},
+    {name:"MOD 2 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"}
+  ]
+};
+
+const overlay = document.getElementById("popupOverlay");
+const loaderOverlay = document.getElementById("loaderOverlay");
+const title = document.getElementById("popupTitle");
+const btns = document.getElementById("popupButtons");
+
+document.querySelectorAll(".btn-neon").forEach(btn => {
+  btn.onclick = () => {
+    loaderOverlay.classList.add("active");
+    setTimeout(() => {
+      loaderOverlay.classList.remove("active");
+      title.textContent = btn.parentElement.querySelector("h3").textContent;
+      btns.innerHTML = "";
+      modLinks[btn.dataset.mod].forEach(link => {
+        const b = document.createElement("button");
+        b.textContent = link.name;
+        b.onclick = () => {
+          loaderOverlay.classList.add("active");
+          setTimeout(() => {
+            loaderOverlay.classList.remove("active");
+            window.open(link.url, "_blank");
+          }, 1800);
+        };
+        btns.appendChild(b);
+      });
+      overlay.classList.add("active");
+    }, 2200);
+  };
+});
+
+overlay.onclick = e => {
+  if (e.target === overlay || e.target.classList.contains("closeX")) {
+    overlay.classList.remove("active");
+  }
+};
+</script>
+
+</body>
+</html>  backdrop-filter: blur(8px);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
