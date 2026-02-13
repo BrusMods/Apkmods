@@ -4,244 +4,323 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>APKMODS - Mods Gratis</title>
-<meta name="theme-color" content="#0135FF">
+<meta name="theme-color" content="#00ffff">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600&display=swap');
 
 * {
   box-sizing: border-box;
-  font-family: 'Poppins', system-ui;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  background: radial-gradient(circle at top, #0135FF, #000);
-  color: #fff;
+  background: #000;
+  color: #00ffff;
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #001122, #000000);
+  position: relative;
 }
 
 canvas {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* HEADER */
 header {
-  background: rgba(0,0,0,.55);
-  backdrop-filter: blur(6px);
-  padding: 15px 20px;
-  position: relative;
-  z-index: 2;
-  border-bottom: 1px solid rgba(1,53,255,.3);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  padding: 15px 5%;
+  z-index: 100;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
+
 .brand {
-  font-size: 28px;
-  font-weight: 700;
-  color: #0135FF;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #00ffff;
+  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+  letter-spacing: 4px;
+  animation: glitch 4s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+  2% { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
+  4% { text-shadow: 0; }
+  100% { text-shadow: 0; }
 }
 
 /* HERO */
 .hero {
+  padding: 180px 5% 100px;
+  text-align: center;
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 60px 20px 40px;
-}
-.hero h1 {
-  color: #0135FF;
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-.hero p {
-  color: #ddd;
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 16px;
 }
 
-/* MODS */
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 30px #00ffff, 0 0 60px #0088ff;
+  margin-bottom: 20px;
+  animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  color: #aaffff;
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+@keyframes neonGlow {
+  from { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+  to   { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
+}
+
+/* CARDS */
 .section {
-  position: relative;
-  z-index: 2;
-  max-width: 1000px;
-  margin: 0 auto 40px;
-  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
   display: grid;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
 }
 
 .card {
-  background: rgba(0,0,0,.6);
+  background: rgba(0, 20, 40, 0.6);
+  border: 1px solid #00ffff33;
+  border-radius: 16px;
+  padding: 25px;
   backdrop-filter: blur(8px);
-  border-radius: 18px;
-  padding: 20px;
-  border: 1px solid rgba(1,53,255,.3);
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  transition: all 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(60px);
+  animation: cardFadeIn 1s forwards;
 }
+
+.card:nth-child(1) { animation-delay: 0.3s; }
+.card:nth-child(2) { animation-delay: 0.6s; }
+
+@keyframes cardFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 15px 40px rgba(1,53,255,0.35);
-  border-color: #00aaff;
+  transform: translateY(-15px);
+  border-color: #00ffff;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: scan 4s infinite linear;
+}
+
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .mod-img {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  height: 180px;
   object-fit: contain;
-  border-radius: 12px;
-  border: 1px solid rgba(1,53,255,.4);
-  flex-shrink: 0;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px #00ffff);
+  transition: transform 0.4s;
+}
+
+.card:hover .mod-img {
+  transform: scale(1.08);
 }
 
 .mod-info h3 {
-  margin: 0 0 5px;
-  color: #0135FF;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  color: #00ffff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px #00ffff;
 }
+
 .mod-info p {
-  margin: 0 0 10px;
-  color: #ddd;
+  color: #aaffff;
+  margin-bottom: 20px;
 }
 
 .btn-neon {
-  padding: 12px 22px;
-  border-radius: 14px;
-  border: 2px solid #0135FF;
+  width: 100%;
+  padding: 14px;
   background: transparent;
-  color: #0135FF;
-  font-weight: 600;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 50px;
   cursor: pointer;
-  transition: .3s;
   position: relative;
   overflow: hidden;
-}
-.btn-neon:hover {
-  color: #fff;
-  box-shadow: 0 0 20px #0135FF, 0 0 40px #00aaff;
-}
-.btn-neon::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(45deg, #0135FF, #0088ff, #00aaff, #0135FF);
-  background-size: 300%;
-  filter: blur(8px);
-  opacity: 0;
-  transition: opacity .3s;
-  z-index: -1;
-}
-.btn-neon:hover::before {
-  opacity: 1;
-  animation: glow 3s infinite linear;
-}
-@keyframes glow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  transition: all 0.3s;
 }
 
-/* POPUP CON ANIMACIÓN CHIDA (solo esto cambió) */
+.btn-neon:hover {
+  background: #00ffff;
+  color: #000;
+  box-shadow: 0 0 30px #00ffff;
+}
+
+/* POPUP (mismo estilo cyber) */
 #popupOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.75);
+  background: rgba(0,0,0,0.85);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  backdrop-filter: blur(0px);
-  opacity: 0;
-  transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
+  backdrop-filter: blur(10px);
 }
-#popupOverlay.active {
-  display: flex;
-  opacity: 1;
-  backdrop-filter: blur(12px);
-}
+
+#popupOverlay.active { display: flex; }
+
 #popupBox {
-  position: relative;
-  background: rgba(0,0,0,.95);
-  border: 2px solid #0135FF;
-  border-radius: 16px;
+  background: rgba(0, 10, 30, 0.9);
+  border: 2px solid #00ffff;
+  border-radius: 20px;
   width: 90%;
-  max-width: 420px;
-  padding: 25px;
+  max-width: 500px;
+  padding: 30px;
   text-align: center;
-  transform: scale(0.7);
+  box-shadow: 0 0 60px rgba(0,255,255,0.5);
+  transform: scale(0.8);
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
 }
+
 #popupOverlay.active #popupBox {
   transform: scale(1);
   opacity: 1;
 }
+
 .closeX {
   position: absolute;
   top: 15px;
-  right: 18px;
-  font-size: 22px;
-  color: #0135FF;
+  right: 20px;
+  font-size: 28px;
+  color: #00ffff;
   cursor: pointer;
-  user-select: none;
   transition: all 0.3s;
 }
-.closeX:hover {
-  color: #00aaff;
-  transform: rotate(90deg) scale(1.2);
-}
+
+.closeX:hover { transform: rotate(90deg); color: #ff00ff; }
 
 #popupBox h2 {
-  color: #0135FF;
-  margin-bottom: 20px;
-}
-
-#popupButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  font-family: 'Orbitron', sans-serif;
+  color: #00ffff;
+  text-shadow: 0 0 20px #00ffff;
+  margin-bottom: 25px;
 }
 
 #popupButtons button {
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #0135FF;
-  color: #fff;
-  font-weight: 600;
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-weight: bold;
+  border-radius: 50px;
   cursor: pointer;
-  transition: all .3s;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s;
 }
-#popupButtons button::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255,255,255,0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-}
-#popupButtons button:hover::after {
-  width: 300px;
-  height: 300px;
-}
+
 #popupButtons button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(1,53,255,0.5);
+  background: #00ffff22;
+  box-shadow: 0 0 25px #00ffff;
+}
+
+/* LOADER CUBO (mantenido pero con tonos cyan) */
+#loaderOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+#loaderOverlay.active { display: flex; }
+
+.cube-container { perspective: 1200px; }
+.cube {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spinCube 3s infinite linear;
+}
+
+.cube-face {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #00ffff, #0088ff);
+  border: 2px solid #ffffff44;
+  box-shadow: 0 0 30px #00ffff;
+  opacity: 0.85;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cube-face-front  { transform: translateZ(60px); }
+.cube-face-back   { transform: rotateY(180deg) translateZ(60px); }
+.cube-face-right  { transform: rotateY(90deg) translateZ(60px); }
+.cube-face-left   { transform: rotateY(-90deg) translateZ(60px); }
+.cube-face-top    { transform: rotateX(90deg) translateZ(60px); }
+.cube-face-bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+@keyframes spinCube {
+  0%   { transform: rotateX(0) rotateY(0); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
 }
 </style>
 </head>
-
 <body>
 
 <canvas id="particles"></canvas>
@@ -251,30 +330,28 @@ header {
 </header>
 
 <section class="hero">
-  <h1>📱 Descarga los Mejores Mods</h1>
-  <p>Accede a mods y apps medio Vip completamente Gratis</p>
+  <h1>BIENVENIDO A APKMODS</h1>
+  <p>Mods premium, cheats y herramientas VIP totalmente GRATIS</p>
 </section>
 
 <section class="section">
-
   <div class="card">
-    <img src="mod1.png" class="mod-img">
+    <img src="mod1.png" class="mod-img" alt="Bloodstrike Mod">
     <div class="mod-info">
       <h3>MOD MENU BLOODSTRIKE</h3>
-      <p>Varios mods de Bloodstrike.</p>
-      <button class="btn-neon" data-mod="bloodstrike">Descargar</button>
+      <p>Varios cheats y mods avanzados para Bloodstrike</p>
+      <button class="btn-neon" data-mod="bloodstrike">DESCARGAR</button>
     </div>
   </div>
 
   <div class="card">
-    <img src="mod2.png" class="mod-img">
+    <img src="mod2.png" class="mod-img" alt="Minecraft Mod">
     <div class="mod-info">
       <h3>MOD MENU MINECRAFT</h3>
-      <p>Mods para Minecraft Bedrock.</p>
-      <button class="btn-neon" data-mod="minecraft">Descargar</button>
+      <p>Mods premium para Minecraft Bedrock Edition</p>
+      <button class="btn-neon" data-mod="minecraft">DESCARGAR</button>
     </div>
   </div>
-
 </section>
 
 <!-- POPUP -->
@@ -286,44 +363,86 @@ header {
   </div>
 </div>
 
-<script>
-// PARTICLES (cambiadas a azul)
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+<!-- LOADER -->
+<div id="loaderOverlay">
+  <div class="cube-container">
+    <div class="cube">
+      <div class="cube-face cube-face-front">MOD</div>
+      <div class="cube-face cube-face-back">VIP</div>
+      <div class="cube-face cube-face-right">FREE</div>
+      <div class="cube-face cube-face-left">2025</div>
+      <div class="cube-face cube-face-top">BRUS</div>
+      <div class="cube-face cube-face-bottom">STYLE</div>
+    </div>
+  </div>
+</div>
 
-function resize(){
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
+<script>
+// PARTÍCULAS CUBOS AZULES 3D-ish (estilo cyberpunk bonito)
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
-addEventListener("resize", resize);
+window.addEventListener('resize', resize);
 resize();
 
-let particles = [];
-for(let i=0;i<120;i++){
-  particles.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    vx:(Math.random()-.5)*3,
-    vy:(Math.random()-.5)*3,
-    life:100
+let cubes = [];
+for (let i = 0; i < 60; i++) {
+  cubes.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    z: Math.random() * 1000 - 500,
+    size: Math.random() * 8 + 4,
+    vx: (Math.random() - 0.5) * 1.5,
+    vy: (Math.random() - 0.5) * 1.5,
+    vz: (Math.random() - 0.5) * 2,
+    rotX: Math.random() * Math.PI * 2,
+    rotY: Math.random() * Math.PI * 2,
+    rotSpeedX: (Math.random() - 0.5) * 0.02,
+    rotSpeedY: (Math.random() - 0.5) * 0.02
   });
 }
 
-(function animate(){
-  ctx.fillStyle="rgba(0,0,0,.15)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+function drawCube(x, y, size, alpha) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.globalAlpha = alpha;
 
-  particles.forEach(p=>{
-    p.x+=p.vx;
-    p.y+=p.vy;
-    p.life--;
-    if(p.life<=0){
-      p.x=Math.random()*canvas.width;
-      p.y=Math.random()*canvas.height;
-      p.life=100;
-    }
-    ctx.fillStyle="rgba(1,53,255,0.8)";
-    ctx.fillRect(p.x,p.y,2,2);
+  // Cara frontal
+  ctx.fillStyle = `rgba(0, 255, 255, ${alpha * 0.8})`;
+  ctx.fillRect(-size/2, -size/2, size, size);
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(-size/2, -size/2, size, size);
+
+  ctx.restore();
+}
+
+(function animate() {
+  ctx.fillStyle = 'rgba(0,0,0,0.08)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  cubes.forEach(c => {
+    c.x += c.vx;
+    c.y += c.vy;
+    c.z += c.vz;
+    c.rotX += c.rotSpeedX;
+    c.rotY += c.rotSpeedY;
+
+    if (c.x < -50 || c.x > canvas.width + 50) c.vx *= -1;
+    if (c.y < -50 || c.y > canvas.height + 50) c.vy *= -1;
+
+    const perspective = 800 / (800 + c.z);
+    const px = c.x * perspective + canvas.width / 2 * (1 - perspective);
+    const py = c.y * perspective + canvas.height / 2 * (1 - perspective);
+    const psize = c.size * perspective * 1.5;
+
+    const alpha = Math.max(0.1, (c.z + 500) / 1000);
+
+    drawCube(px, py, psize, alpha);
   });
 
   requestAnimationFrame(animate);
@@ -331,106 +450,55 @@ for(let i=0;i<120;i++){
 </script>
 
 <script>
-// MOD LINKS
+// Lógica de popup y loader (igual que antes, solo estilos cambiados)
 const modLinks = {
-  bloodstrike:[
+  bloodstrike: [
     {name:"AMSTER CHEATS BLOODSTRIKE",url:"https://brusmods.github.io/P-gina-download-/"},
     {name:"MOD PAHLAWAN CHEATS 2.0-VENCIDO",url:"https://link-hub.net/2551325/Umx4QymS2YrA"},
     {name:"MOD PAHLAWAN CHEATS 3.0",url:"https://www.mediafire.com/file/2spuq0irm6cwrgg/NEW+UPDATE+PAHLAWAN+CHEATS+3.0.zip/file"},
     {name:"MOD 4 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"},
     {name:"MOD 5 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"}
   ],
-  minecraft:[
+  minecraft: [
     {name:"MOD 1 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"},
     {name:"MOD 2 EN MANTENIMIENTO",url:"https://brusmods.github.io/En-mantenimiento-/"}
   ]
 };
 
 const overlay = document.getElementById("popupOverlay");
+const loaderOverlay = document.getElementById("loaderOverlay");
 const title = document.getElementById("popupTitle");
 const btns = document.getElementById("popupButtons");
 
-document.querySelectorAll(".btn-neon").forEach(btn=>{
-  btn.onclick = ()=>{
-    const mod = btn.dataset.mod;
-    title.textContent = btn.parentElement.querySelector("h3").textContent;
-    btns.innerHTML = "";
-
-    modLinks[mod].forEach(link=>{
-      const b = document.createElement("button");
-      b.textContent = link.name;
-      b.onclick = ()=>window.open(link.url,"_blank");
-      btns.appendChild(b);
-    });
-
-    overlay.classList.add("active");
+document.querySelectorAll(".btn-neon").forEach(btn => {
+  btn.onclick = () => {
+    loaderOverlay.classList.add("active");
+    setTimeout(() => {
+      loaderOverlay.classList.remove("active");
+      title.textContent = btn.parentElement.querySelector("h3").textContent;
+      btns.innerHTML = "";
+      modLinks[btn.dataset.mod].forEach(link => {
+        const b = document.createElement("button");
+        b.textContent = link.name;
+        b.onclick = () => {
+          loaderOverlay.classList.add("active");
+          setTimeout(() => {
+            loaderOverlay.classList.remove("active");
+            window.open(link.url, "_blank");
+          }, 1800);
+        };
+        btns.appendChild(b);
+      });
+      overlay.classList.add("active");
+    }, 2200);
   };
 });
 
-overlay.onclick = e=>{
-  if(e.target === overlay || e.target.classList.contains("closeX")){
+overlay.onclick = e => {
+  if (e.target === overlay || e.target.classList.contains("closeX")) {
     overlay.classList.remove("active");
   }
 };
-</script>
-
-<audio id="clickSound" preload="auto">
-  <source src="click.m4a" type="audio/mpeg">
-</audio>
-
-<script>
-// EFECTO DE CLIC (azul)
-document.addEventListener("click", e => {
-  for(let i=0;i<12;i++){
-    const p = document.createElement("div");
-    p.style.position = "fixed";
-    p.style.left = e.clientX + "px";
-    p.style.top = e.clientY + "px";
-    p.style.width = "6px";
-    p.style.height = "6px";
-    p.style.borderRadius = "50%";
-    p.style.background = "#00aaff";
-    p.style.pointerEvents = "none";
-    p.style.boxShadow = "0 0 10px #00aaff";
-
-    const x = (Math.random() - 0.5) * 120;
-    const y = (Math.random() - 0.5) * 120;
-
-    p.animate([
-      { transform: "translate(-50%,-50%)", opacity: 1 },
-      { transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`, opacity: 0 }
-    ], { duration: 600 });
-
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 600);
-  }
-});
-</script>
-
-<script>
-// SONIDO AL CLICK
-const sound = document.getElementById("clickSound");
-let unlocked = false;
-
-function unlockAudio() {
-  if (unlocked) return;
-  sound.play().then(() => {
-    sound.pause();
-    sound.currentTime = 0;
-    unlocked = true;
-  }).catch(()=>{});
-}
-
-document.addEventListener("touchstart", unlockAudio, { once: true });
-document.addEventListener("click", unlockAudio, { once: true });
-
-document.addEventListener("click", e => {
-  const btn = e.target.closest("button");
-  if (!btn || !unlocked) return;
-
-  sound.currentTime = 0;
-  sound.play();
-});
 </script>
 
 </body>
